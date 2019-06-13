@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <!-- ===== Package de configuration de base ===== -->
+    <package name="base" abstract="true" extends="struts-default">
+        <interceptors>
+            <interceptor name="auth" class="org.lle.biblio.webapp.interceptor.AuthInterceptor" />
+
+            <interceptor-stack name="applicationDefaultStack">
+                <interceptor-ref name="store">
+                    <param name="operationMode">AUTOMATIC</param>
+                </interceptor-ref>
+                <interceptor-ref name="defaultStack">
+                    <param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">ERROR</param>
+                    <param name="exception.logCategory">org.lle.biblio.webapp</param>
+                </interceptor-ref>
+            </interceptor-stack>
+
+            <interceptor-stack name="authenticatedStack">
+                <interceptor-ref name="auth" />
+                <interceptor-ref name="applicationDefaultStack" />
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="applicationDefaultStack" />
+
+        <!-- Results globaux -->
+        <global-results>
+            <result name="error">/jsp/error.jsp</result>
+            <result name="error-forbidden" type="redirectAction">login</result>
+            <result name="Exception" type="httpheader">
+                <param name="error">500</param>
+                <param name="parse">true</param>
+                <param name="errorMessage">%{exception}</param>
+            </result>
+            <result name="TechnicalException" type="httpheader">
+                <param name="error">500</param>
+                <param name="parse">true</param>
+                <param name="errorMessage">Erreur technique - %{exception.message}</param>
+            </result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="Exception" />
+            <exception-mapping exception="org.lle.biblio.model.exception.TechnicalException"
+                               result="TechnicalException" />
+        </global-exception-mappings>
+    </package>
+
+
+    <!-- ===== Package pour les actions publiques ===== -->
+    <package name="public" extends="base">
+
+        <!-- Action par défaut -->
+        <default-action-ref name="login" />
+
+        <!-- Action "index" -->
+        <action name="index">
+            <result>/jsp/login.jsp</result>
+        </action>
+
+        <!-- Actions Login/Logout -->
+        <action name="login" class="org.lle.biblio.webapp.action.LoginAction" method="doLogin">
+            <result name="input">/jsp/login.jsp</result>
+            <result name="success">/jsp/login.jsp</result>
+        </action>
+        <action name="logout" class="org.lle.biblio.webapp.action.LoginAction" method="doLogout">
+            <result type="redirectAction">login</result>
+        </action>
+    </package>
+
+
+    <!-- ===== Package pour les actions privées ===== -->
+    <package name="private" extends="base">
+        <default-interceptor-ref name="authenticatedStack" />
+
+        <action name="recherche" class="org.lle.biblio.webapp.action.RechercheAction" method="doRecherche">
+            <result name="input">/jsp/recherche/search.jsp</result>
+            <result name="error">/jsp/error.jsp</result>
+            <result name="success">/jsp/recherche/result.jsp</result>
+
+        </action>
+
+        <action name="livre_detail"
+                class="org.lle.biblio.webapp.action.LivreAction"
+                method="doDetail">
+            <result name="success">/jsp/livre/livredetail.jsp</result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+
+        <action name="emprunt" class="org.lle.biblio.webapp.action.LivreAction" method="doRent">
+
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="authenticatedStack" />
+
+            <result name="error">/jsp/error.jsp</result>
+            <result name="success" type="redirectAction">display</result>
+
+        </action>
+
+        <action name="display" class="org.lle.biblio.webapp.action.DisplayAction" method="doDisplay">
+        <result>/jsp/utilisateur/display.jsp</result>
+        </action>
+
+        <action name="prolonger" class="org.lle.biblio.webapp.action.LivreAction" method="doProlo">
+
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="authenticatedStack" />
+
+            <result name="error">/jsp/error.jsp</result>
+            <result name="success" type="redirectAction">display</result>
+
+        </action>
+
+    </package>
+
+
+    <!-- ===== Package pour les actions AJAX ===== -->
+    <package name="ajax" extends="base, json-default">
+        <default-interceptor-ref name="authenticatedStack" />
+
+        <global-results>
+            <result name="error" type="json">
+                <param name="statusCode">400</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors.*,fieldErrors.*</param>
+            </result>
+            <result name="error-forbidden" type="httpheader">
+                <param name="error">403</param>
+                <param name="errorMessage">Accès interdit</param>
+            </result>
+        </global-results>
+
+
+    </package>
+</struts>

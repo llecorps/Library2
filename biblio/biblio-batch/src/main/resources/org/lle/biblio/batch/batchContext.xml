@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- chargement du fichier conf/config.properties -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>file:${application.home}/conf/config.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="false"/>
+    </bean>
+
+    <!-- Chargement du fichier properties contenant
+        la configuration de la datasource vers DB_TICKET  -->
+    <bean id="dataSourceBiblioConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="file:${application.home}/conf/db-biblio.properties" />
+    </bean>
+
+    <!-- Création de la datasource "dataSourceTicket" -->
+    <bean id="dataSourceBiblio"
+          class="org.apache.commons.dbcp2.BasicDataSourceFactory"
+          factory-method="createDataSource"
+          destroy-method="close">
+        <constructor-arg ref="dataSourceBiblioConfiguration" />
+    </bean>
+
+
+    <bean id="CheckLocation" class="org.lle.biblio.batch.traitement.CheckLocation" />
+
+
+
+
+</beans>

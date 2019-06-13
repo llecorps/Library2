@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <ns2:DoLoginResponse xmlns:ns2="http://service.biblio.lle.org/">
+         <return>
+            <adress>24 rue de genève - Lyon</adress>
+            <email>blongway@yahoo.com</email>
+            <id>1</id>
+            <login>mike</login>
+            <password>$2a$06$IkCItz/PID/Ae7xYNoEh4.twSXXoOFg.5vUfl8vgTFWuy.1zjpDtG</password>
+            <phone>666887755</phone>
+         </return>
+      </ns2:DoLoginResponse>
+   </S:Body>
+</S:Envelope>

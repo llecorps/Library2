@@ -1,0 +1,23 @@
+# Created by https://www.gitignore.io/api/java-web
+
+### Java-Web ###
+## ignoring target file
+/target
+/*-*/target
+
+/.idea
+/.settings
+/.project
+*.iml
+*.db
+*.bak
+*.tar
+/*-*/.project
+/*-*/.settings
+/*-*/.classpath
+/*-*/.checkstyle
+/*-*/.springBeans
+/class
+
+
+# End of https://www.gitignore.io/api/java-web

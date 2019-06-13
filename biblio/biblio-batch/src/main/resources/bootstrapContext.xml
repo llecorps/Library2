@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Prend en compte la configuration des injections (@Inject...) -->
+    <context:annotation-config/>
+
+    <!-- Scanne les packages pour trouver les beans qui se déclarent (@Named...) -->
+    <context:component-scan base-package="org.lle.biblio"/>
+
+    <!-- Inclusion d'autres fichiers de contexte Spring -->
+    <import resource="classpath:/org/lle/biblio/batch/batchContext.xml"/>
+    <import resource="classpath:/org/lle/biblio/business/businessContext.xml"/>
+    <import resource="classpath:/org/lle/biblio/consumer/consumerContext.xml"/>
+</beans>

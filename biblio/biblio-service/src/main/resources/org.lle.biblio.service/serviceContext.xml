@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <!-- Chargement du fichier properties contenant
+        la configuration de la datasource vers DB_TICKET  -->
+    <bean id="dataSourceBiblioConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:org.lle.biblio.service/db-biblio.properties" />
+    </bean>
+
+    <!-- Création de la datasource "dataSourceTicket" -->
+    <bean id="dataSourceBiblio"
+          class="org.apache.commons.dbcp2.BasicDataSourceFactory"
+          factory-method="createDataSource"
+          destroy-method="close">
+        <constructor-arg ref="dataSourceBiblioConfiguration" />
+    </bean>
+
+    <bean id="LoginServiceImpl" class="org.lle.biblio.service.LoginServiceImpl" />
+    <bean id="LocationServiceImpl" class="org.lle.biblio.service.LocationServiceImpl" />
+    <bean id="LivreServiceImpl" class="org.lle.biblio.service.LivreServiceImpl" />
+    <bean id="AuteurServiceImpl" class="org.lle.biblio.service.AuteurServiceImpl" />
+    <bean id="UtilisateurServiceImpl" class="org.lle.biblio.service.UtilisateurServiceImpl" />
+
+</beans>
