@@ -29,7 +29,7 @@ un batch lancé régulièrement et qui enverra des mails de relance aux usagers 
   -> déployer biblio-batch-1.0-SNAPSHOT-archive-deploy.tar.gz.
   -> Livrer les fichiers de configuration : config.properties, db-biblio.properties.
   -> Lancer le script batch-export-emprunt-statut.sh
-  
+
 ### Crontab
 
 - crontab -e pour éditer la crontab.
@@ -37,3 +37,19 @@ un batch lancé régulièrement et qui enverra des mails de relance aux usagers 
 # Minute   Hour   Day of Month       Month          Day of Week        Command    
 # (0-59)  (0-23)     (1-31)    (1-12 or Jan-Dec)  (0-6 or Sun-Sat)                
     0        2          *             *                *            batch-export-emprunt-statut.sh
+
+### pgcrypto
+
+https://x-team.com/blog/storing-secure-passwords-with-postgresql/
+
+- CREATE EXTENSION pgcrypto;
+
+- INSERT INTO users (email, password) VALUES (
+  'johndoe@mail.com',
+  crypt('johnspassword', gen_salt('bf'))
+);
+
+SELECT id
+  FROM users
+ WHERE email = 'johndoe@mail.com'
+   AND password = crypt('johnspassword', password);
