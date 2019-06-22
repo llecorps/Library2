@@ -6,7 +6,7 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">Biblio</h1>
-        <p class="lead">Un service d'emprunt pour tous ouvrages.</p>
+        <p class="lead">Un service d'emprunt pour tous.</p>
     </div>
 </div>
 

@@ -99,9 +99,13 @@
             <interceptor-ref name="defaultStack" />
             <interceptor-ref name="authenticatedStack" />
 
-            <result name="error">/jsp/error.jsp</result>
-            <result name="success" type="redirectAction">display</result>
+            <result name="error">/jsp/livre/booked.jsp</result>
+            <result name="success">/jsp/livre/borrow.jsp</result>
 
+        </action>
+
+        <action name="dispo" class="org.lle.biblio.webapp.action.DisplayAction" method="doDispo">
+            <result>/jsp/utilisateur/display.jsp</result>
         </action>
 
         <action name="display" class="org.lle.biblio.webapp.action.DisplayAction" method="doDisplay">
