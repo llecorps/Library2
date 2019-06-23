@@ -1,5 +1,6 @@
 package org.lle.biblio.service;
 
+import org.lle.biblio.model.bean.livre.Booking;
 import org.lle.biblio.model.bean.location.Location;
 
 import java.util.List;
@@ -47,6 +48,14 @@ public class LocationServiceImpl extends AbstractService{
 
         return vListLocation;
     }
+
+    public List<Booking> getListReservation(int id){
+
+        List<Booking> vListReservation = getManagerFactory().getLocationManager().getListReservation(id);
+
+        return vListReservation;
+    }
+
 
     public List<Location> listLocation(){
 

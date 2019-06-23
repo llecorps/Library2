@@ -130,6 +130,41 @@ public class LivreAction extends ActionSupport implements SessionAware {
         return vResult;
     }
 
+    public String doBorrow() {
+
+        String vResult = ActionSupport.INPUT;
+
+        BiblioService_Service pBiblio = new BiblioService_Service();
+        BiblioService pBiblioService = pBiblio.getBiblioServicePort();
+
+        if (id != null) {
+
+
+                //Date
+                Calendar expireDate = Calendar.getInstance();
+                expireDate.add(Calendar.DATE, 28);
+                Date date = expireDate.getTime();
+                SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
+                String dateRetour = formatter.format(date);
+
+                //USer ID
+                Utilisateur vUser = (Utilisateur) this.session.get("utilisateur");
+
+                //Booking
+                Location pLocation = new Location();
+                pLocation.setExpiredate(dateRetour);
+                pLocation.setLivreId(livre.getId());
+                pLocation.setUtilisateurId(vUser.getId());
+                pLocation.setProlongation(true);
+
+                pBiblioService.addLocation(pLocation);
+
+                vResult = ActionSupport.SUCCESS;
+
+        }
+
+        return vResult;
+    }
 
     public String doProlo() {
 

@@ -3,7 +3,9 @@ package org.lle.biblio.consumer.impl.dao;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.lle.biblio.consumer.contract.dao.LocationDao;
+import org.lle.biblio.consumer.impl.rowmapper.location.BookingRM;
 import org.lle.biblio.consumer.impl.rowmapper.location.LocationRM;
+import org.lle.biblio.model.bean.livre.Booking;
 import org.lle.biblio.model.bean.location.Location;
 import org.lle.biblio.model.exception.NotFoundException;
 import org.springframework.dao.DuplicateKeyException;
@@ -110,6 +112,18 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
 
         List<Location> vListLocation = vJdbcTemplate.query(vSQL, vRowMapper);
         return vListLocation;
+    }
+
+    @Override
+    public List<Booking> getListReservation(int id) {
+
+        String vSQL = "SELECT * FROM booking WHERE user_id="+id;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+
+        RowMapper<Booking> vRowMapper = new BookingRM();
+
+        List<Booking> vListReservation = vJdbcTemplate.query(vSQL, vRowMapper);
+        return vListReservation;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package org.lle.biblio.service;
 
 import org.lle.biblio.model.bean.auteur.Auteur;
+import org.lle.biblio.model.bean.livre.Booking;
 import org.lle.biblio.model.bean.livre.Livre;
 import org.lle.biblio.model.bean.location.Location;
 import org.lle.biblio.model.bean.utilisateur.Utilisateur;
@@ -76,6 +77,17 @@ public class BiblioService extends AbstractService{
         List<Location> vListLocation = vLocationService.getListLocation(id);
 
         return  vListLocation;
+    }
+
+    @WebMethod
+    public List<Booking> getListReservation(int id){
+
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        List<Booking> vListReservation = vLocationService.getListReservation(id);
+
+        return  vListReservation;
     }
 
     @WebMethod

@@ -33,7 +33,7 @@
             <ul class="list-group list-group-flush">
 
                 <br>
-                <h2><s:text name="nav.list" /></h2>&nbsp
+                <h3><s:text name="nav.list" /></h3>&nbsp
                 <s:iterator value="listEmprunt">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
 
@@ -54,6 +54,18 @@
                         </s:else>
                     </li>
                 </s:iterator>
+               
+                <h3><s:text name="nav.resa" /></h3>&nbsp
+                <s:iterator value="listResa">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                        Nom:&nbsp<s:property value="nom"/>
+                        Titre:&nbsp<s:property value="titre"/>
+                        Description:&nbsp<s:property value="description"/>
+                        Genre:&nbsp<s:property value="genre"/>
+                    </li>
+                </s:iterator>
+
             </ul>
 
 

@@ -1,5 +1,6 @@
 package org.lle.biblio.consumer.contract.dao;
 
+import org.lle.biblio.model.bean.livre.Booking;
 import org.lle.biblio.model.bean.location.Location;
 import org.lle.biblio.model.exception.NotFoundException;
 
@@ -21,6 +22,8 @@ public interface LocationDao {
     List<Location> getListLocation(int id);
 
     List<Location> listLocation();
+
+    List<Booking> getListReservation(int id);
 
     void addProlo(String expiration, int id);
 }

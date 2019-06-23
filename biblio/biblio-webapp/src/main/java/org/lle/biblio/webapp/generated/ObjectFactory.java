@@ -31,6 +31,7 @@ public class ObjectFactory {
     private final static QName _DoLoginResponse_QNAME = new QName("http://service.biblio.lle.org/", "DoLoginResponse");
     private final static QName _GetListLocationResponse_QNAME = new QName("http://service.biblio.lle.org/", "getListLocationResponse");
     private final static QName _GetLivrelocation_QNAME = new QName("http://service.biblio.lle.org/", "getLivrelocation");
+    private final static QName _GetListReservationResponse_QNAME = new QName("http://service.biblio.lle.org/", "getListReservationResponse");
     private final static QName _AddProloResponse_QNAME = new QName("http://service.biblio.lle.org/", "addProloResponse");
     private final static QName _GetAuteur_QNAME = new QName("http://service.biblio.lle.org/", "getAuteur");
     private final static QName _GetExemplaireResponse_QNAME = new QName("http://service.biblio.lle.org/", "getExemplaireResponse");
@@ -49,6 +50,7 @@ public class ObjectFactory {
     private final static QName _GetLocationResponse_QNAME = new QName("http://service.biblio.lle.org/", "getLocationResponse");
     private final static QName _GetLivreResponse_QNAME = new QName("http://service.biblio.lle.org/", "getLivreResponse");
     private final static QName _ListLocation_QNAME = new QName("http://service.biblio.lle.org/", "listLocation");
+    private final static QName _GetListReservation_QNAME = new QName("http://service.biblio.lle.org/", "getListReservation");
     private final static QName _GetLivre_QNAME = new QName("http://service.biblio.lle.org/", "getLivre");
     private final static QName _GetUtilisateurResponse_QNAME = new QName("http://service.biblio.lle.org/", "getUtilisateurResponse");
 
@@ -180,6 +182,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetListReservation }
+     * 
+     */
+    public GetListReservation createGetListReservation() {
+        return new GetListReservation();
+    }
+
+    /**
      * Create an instance of {@link DoListLivre }
      * 
      */
@@ -244,6 +254,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetListReservationResponse }
+     * 
+     */
+    public GetListReservationResponse createGetListReservationResponse() {
+        return new GetListReservationResponse();
+    }
+
+    /**
      * Create an instance of {@link GetLivrelocation }
      * 
      */
@@ -273,6 +291,14 @@ public class ObjectFactory {
      */
     public AddProloResponse createAddProloResponse() {
         return new AddProloResponse();
+    }
+
+    /**
+     * Create an instance of {@link Booking }
+     * 
+     */
+    public Booking createBooking() {
+        return new Booking();
     }
 
     /**
@@ -368,6 +394,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "getLivrelocation")
     public JAXBElement<GetLivrelocation> createGetLivrelocation(GetLivrelocation value) {
         return new JAXBElement<GetLivrelocation>(_GetLivrelocation_QNAME, GetLivrelocation.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetListReservationResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "getListReservationResponse")
+    public JAXBElement<GetListReservationResponse> createGetListReservationResponse(GetListReservationResponse value) {
+        return new JAXBElement<GetListReservationResponse>(_GetListReservationResponse_QNAME, GetListReservationResponse.class, null, value);
     }
 
     /**
@@ -530,6 +565,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "listLocation")
     public JAXBElement<ListLocation> createListLocation(ListLocation value) {
         return new JAXBElement<ListLocation>(_ListLocation_QNAME, ListLocation.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetListReservation }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "getListReservation")
+    public JAXBElement<GetListReservation> createGetListReservation(GetListReservation value) {
+        return new JAXBElement<GetListReservation>(_GetListReservation_QNAME, GetListReservation.class, null, value);
     }
 
     /**

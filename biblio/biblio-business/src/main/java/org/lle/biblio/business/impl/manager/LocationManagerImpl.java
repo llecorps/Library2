@@ -1,6 +1,7 @@
 package org.lle.biblio.business.impl.manager;
 
 import org.lle.biblio.business.contract.manager.LocationManager;
+import org.lle.biblio.model.bean.livre.Booking;
 import org.lle.biblio.model.bean.location.Location;
 import org.lle.biblio.model.exception.NotFoundException;
 
@@ -72,6 +73,14 @@ public class LocationManagerImpl extends AbstractManager implements LocationMana
         List<Location> vListLocation = getDaoFactory().getLocationDao().getListLocation(id);
 
         return vListLocation;
+    }
+
+    @Override
+    public List<Booking> getListReservation(int id) {
+
+        List<Booking> vListReservation = getDaoFactory().getLocationDao().getListReservation(id);
+
+        return vListReservation;
     }
 
     @Override
