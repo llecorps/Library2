@@ -130,34 +130,38 @@ public class LivreAction extends ActionSupport implements SessionAware {
         return vResult;
     }
 
-    public String doBorrow() {
+    public String doBook() {
 
         String vResult = ActionSupport.INPUT;
 
         BiblioService_Service pBiblio = new BiblioService_Service();
         BiblioService pBiblioService = pBiblio.getBiblioServicePort();
 
+        //livre_id
         if (id != null) {
 
 
-                //Date
-                Calendar expireDate = Calendar.getInstance();
-                expireDate.add(Calendar.DATE, 28);
-                Date date = expireDate.getTime();
+                //bookingate
+                Calendar now = Calendar.getInstance();
+                Date date = now.getTime();
                 SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
-                String dateRetour = formatter.format(date);
+                String bookingdate = formatter.format(date);
 
-                //USer ID
+                //user_id
                 Utilisateur vUser = (Utilisateur) this.session.get("utilisateur");
 
-                //Booking
-                Location pLocation = new Location();
-                pLocation.setExpiredate(dateRetour);
-                pLocation.setLivreId(livre.getId());
-                pLocation.setUtilisateurId(vUser.getId());
-                pLocation.setProlongation(true);
+                //position
+                int vPosition = 1;
+                //Bean Booking
 
-                pBiblioService.addLocation(pLocation);
+                Booking pBooking = new Booking();
+                pBooking.setBookingdate(bookingdate);
+                pBooking.setLivreId(id);
+                pBooking.setUserId(vUser.getId());
+                pBooking.setPosition(vPosition);
+
+                //Service
+                //pBiblioService.addBooked( Booking pBooking);
 
                 vResult = ActionSupport.SUCCESS;
 

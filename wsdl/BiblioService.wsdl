@@ -13,21 +13,61 @@
 <message name="getLocationResponse">
 <part name="parameters" element="tns:getLocationResponse"/>
 </message>
+<message name="getListReservation">
+<message name="getListReservationResponse">
+<part name="parameters" element="tns:getListReservationResponse"/>
+</message>
+<message name="getLivrelocation">
+<message name="getLivrelocationResponse">
+<part name="parameters" element="tns:getLivrelocationResponse"/>
+</message>
+<message name="DoLogin">
+<part name="parameters" element="tns:DoLogin"/>
+</message>
+<message name="DoLoginResponse">
+<part name="parameters" element="tns:DoLoginResponse"/>
+</message>
 <message name="addProlo">
 <part name="parameters" element="tns:addProlo"/>
 </message>
 <message name="addProloResponse">
+<part name="parameters" element="tns:addProloResponse"/>
+</message>
+<message name="getListLocation">
+<part name="parameters" element="tns:getListLocation"/>
+</message>
+<message name="getListLocationResponse">
+<part name="parameters" element="tns:getListLocationResponse"/>
+</message>
 <message name="listLocation">
 <part name="parameters" element="tns:listLocation"/>
 </message>
 <message name="listLocationResponse">
 <part name="parameters" element="tns:listLocationResponse"/>
 </message>
+<message name="addLocation">
+<part name="parameters" element="tns:addLocation"/>
+</message>
+<message name="addLocationResponse">
+<part name="parameters" element="tns:addLocationResponse"/>
+</message>
 <message name="getExemplaire">
 <part name="parameters" element="tns:getExemplaire"/>
 </message>
 <message name="getExemplaireResponse">
 <part name="parameters" element="tns:getExemplaireResponse"/>
+</message>
+<message name="getUtilisateur">
+<part name="parameters" element="tns:getUtilisateur"/>
+</message>
+<message name="getUtilisateurResponse">
+<part name="parameters" element="tns:getUtilisateurResponse"/>
+</message>
+<message name="getLivre">
+<part name="parameters" element="tns:getLivre"/>
+</message>
+<message name="getLivreResponse">
+<part name="parameters" element="tns:getLivreResponse"/>
 </message>
 <message name="DoListLivre">
 <part name="parameters" element="tns:DoListLivre"/>
@@ -44,70 +84,62 @@
 <message name="getAuteurResponse">
 <part name="parameters" element="tns:getAuteurResponse"/>
 </message>
-<message name="getUtilisateur">
-<part name="parameters" element="tns:getUtilisateur"/>
-</message>
-<message name="getUtilisateurResponse">
-<part name="parameters" element="tns:getUtilisateurResponse"/>
-</message>
-<message name="getLivrelocation">
-<part name="parameters" element="tns:getLivrelocation"/>
-</message>
-<message name="getLivrelocationResponse">
-<part name="parameters" element="tns:getLivrelocationResponse"/>
-</message>
 <message name="DoResultLivre">
 <part name="parameters" element="tns:DoResultLivre"/>
 </message>
 <message name="DoResultLivreResponse">
 <part name="parameters" element="tns:DoResultLivreResponse"/>
 </message>
-<message name="getLivre">
-<part name="parameters" element="tns:getLivre"/>
+<message name="addBooked">
+<part name="parameters" element="tns:addBooked"/>
 </message>
-<message name="getLivreResponse">
-<part name="parameters" element="tns:getLivreResponse"/>
-</message>
-<message name="DoLogin">
-<part name="parameters" element="tns:DoLogin"/>
-</message>
-<message name="DoLoginResponse">
-<part name="parameters" element="tns:DoLoginResponse"/>
-</message>
-<message name="getListLocation">
-<part name="parameters" element="tns:getListLocation"/>
-</message>
-<message name="getListLocationResponse">
-<part name="parameters" element="tns:getListLocationResponse"/>
-</message>
-<message name="addLocation">
-<part name="parameters" element="tns:addLocation"/>
-</message>
-<message name="addLocationResponse">
-<part name="parameters" element="tns:addLocationResponse"/>
-</message>
-<message name="getListReservation">
-<part name="parameters" element="tns:getListReservation"/>
-</message>
-<message name="getListReservationResponse">
-<part name="parameters" element="tns:getListReservationResponse"/>
+<message name="addBookedResponse">
+<part name="parameters" element="tns:addBookedResponse"/>
 </message>
 <portType name="BiblioService">
 <operation name="getLocation">
 <input message="tns:getLocation" wsam:Action="http://service.biblio.lle.org/BiblioService/getLocationRequest"/>
 <output message="tns:getLocationResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/getLocationResponse"/>
 </operation>
+<operation name="getListReservation">
+<input message="tns:getListReservation" wsam:Action="http://service.biblio.lle.org/BiblioService/getListReservationRequest"/>
+<output message="tns:getListReservationResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/getListReservationResponse"/>
+</operation>
+<operation name="getLivrelocation">
+<input message="tns:getLivrelocation" wsam:Action="http://service.biblio.lle.org/BiblioService/getLivrelocationRequest"/>
+<output message="tns:getLivrelocationResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/getLivrelocationResponse"/>
+</operation>
+<operation name="DoLogin">
+<input message="tns:DoLogin" wsam:Action="http://service.biblio.lle.org/BiblioService/DoLoginRequest"/>
+<output message="tns:DoLoginResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/DoLoginResponse"/>
+</operation>
 <operation name="addProlo">
 <input message="tns:addProlo" wsam:Action="http://service.biblio.lle.org/BiblioService/addProloRequest"/>
 <output message="tns:addProloResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/addProloResponse"/>
+</operation>
+<operation name="getListLocation">
+<input message="tns:getListLocation" wsam:Action="http://service.biblio.lle.org/BiblioService/getListLocationRequest"/>
+<output message="tns:getListLocationResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/getListLocationResponse"/>
 </operation>
 <operation name="listLocation">
 <input message="tns:listLocation" wsam:Action="http://service.biblio.lle.org/BiblioService/listLocationRequest"/>
 <output message="tns:listLocationResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/listLocationResponse"/>
 </operation>
+<operation name="addLocation">
+<input message="tns:addLocation" wsam:Action="http://service.biblio.lle.org/BiblioService/addLocationRequest"/>
+<output message="tns:addLocationResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/addLocationResponse"/>
+</operation>
 <operation name="getExemplaire">
 <input message="tns:getExemplaire" wsam:Action="http://service.biblio.lle.org/BiblioService/getExemplaireRequest"/>
 <output message="tns:getExemplaireResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/getExemplaireResponse"/>
+</operation>
+<operation name="getUtilisateur">
+<input message="tns:getUtilisateur" wsam:Action="http://service.biblio.lle.org/BiblioService/getUtilisateurRequest"/>
+<output message="tns:getUtilisateurResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/getUtilisateurResponse"/>
+</operation>
+<operation name="getLivre">
+<input message="tns:getLivre" wsam:Action="http://service.biblio.lle.org/BiblioService/getLivreRequest"/>
+<output message="tns:getLivreResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/getLivreResponse"/>
 </operation>
 <operation name="DoListLivre">
 <input message="tns:DoListLivre" wsam:Action="http://service.biblio.lle.org/BiblioService/DoListLivreRequest"/>
@@ -118,38 +150,14 @@
 <input message="tns:getAuteur" wsam:Action="http://service.biblio.lle.org/BiblioService/getAuteurRequest"/>
 <output message="tns:getAuteurResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/getAuteurResponse"/>
 </operation>
-<operation name="getUtilisateur">
-<input message="tns:getUtilisateur" wsam:Action="http://service.biblio.lle.org/BiblioService/getUtilisateurRequest"/>
-<output message="tns:getUtilisateurResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/getUtilisateurResponse"/>
-</operation>
-<operation name="getLivrelocation">
-<input message="tns:getLivrelocation" wsam:Action="http://service.biblio.lle.org/BiblioService/getLivrelocationRequest"/>
-<output message="tns:getLivrelocationResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/getLivrelocationResponse"/>
-</operation>
 <operation name="DoResultLivre">
 <input message="tns:DoResultLivre" wsam:Action="http://service.biblio.lle.org/BiblioService/DoResultLivreRequest"/>
 <output message="tns:DoResultLivreResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/DoResultLivreResponse"/>
 <fault name="NotFoundException" message="tns:NotFoundException" wsam:Action="http://service.biblio.lle.org/BiblioService/DoResultLivre/Fault/NotFoundException"/>
 </operation>
-<operation name="getLivre">
-<input message="tns:getLivre" wsam:Action="http://service.biblio.lle.org/BiblioService/getLivreRequest"/>
-<output message="tns:getLivreResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/getLivreResponse"/>
-</operation>
-<operation name="DoLogin">
-<input message="tns:DoLogin" wsam:Action="http://service.biblio.lle.org/BiblioService/DoLoginRequest"/>
-<output message="tns:DoLoginResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/DoLoginResponse"/>
-</operation>
-<operation name="getListLocation">
-<input message="tns:getListLocation" wsam:Action="http://service.biblio.lle.org/BiblioService/getListLocationRequest"/>
-<output message="tns:getListLocationResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/getListLocationResponse"/>
-</operation>
-<operation name="addLocation">
-<input message="tns:addLocation" wsam:Action="http://service.biblio.lle.org/BiblioService/addLocationRequest"/>
-<output message="tns:addLocationResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/addLocationResponse"/>
-</operation>
-<operation name="getListReservation">
-<input message="tns:getListReservation" wsam:Action="http://service.biblio.lle.org/BiblioService/getListReservationRequest"/>
-<output message="tns:getListReservationResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/getListReservationResponse"/>
+<operation name="addBooked">
+<input message="tns:addBooked" wsam:Action="http://service.biblio.lle.org/BiblioService/addBookedRequest"/>
+<output message="tns:addBookedResponse" wsam:Action="http://service.biblio.lle.org/BiblioService/addBookedResponse"/>
 </operation>
 </portType>
 <binding type="tns:BiblioService" name="BiblioServicePortBinding">
@@ -163,7 +171,43 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="getListReservation">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getLivrelocation">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="DoLogin">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="addProlo">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getListLocation">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -181,7 +225,34 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="addLocation">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="getExemplaire">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getUtilisateur">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getLivre">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -211,24 +282,6 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getUtilisateur">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getLivrelocation">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="DoResultLivre">
 <soap:operation soapAction=""/>
 <input>
@@ -241,43 +294,7 @@
 <soap:fault name="NotFoundException" use="literal"/>
 </fault>
 </operation>
-<operation name="getLivre">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="DoLogin">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getListLocation">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="addLocation">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getListReservation">
+<operation name="addBooked">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

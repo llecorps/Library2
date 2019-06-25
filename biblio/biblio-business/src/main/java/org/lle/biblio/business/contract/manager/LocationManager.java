@@ -18,4 +18,5 @@ public interface LocationManager {
     List<Booking> getListReservation(int id);
     List<Location> listLocation();
     void addProlo(String expiration, int id);
+    void addBooked(Booking pBooking);
 }

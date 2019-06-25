@@ -156,5 +156,27 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
 
 
     }
+    @Override
+    public void addBooked (Booking pBooking) {
+
+        String simpleQuote="'";
+        String expireDate = simpleQuote+pBooking.getBookingdate()+simpleQuote;
+
+        BeanPropertySqlParameterSource vParams = new BeanPropertySqlParameterSource(pBooking);
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+
+
+        String vSQL = "INSERT INTO booking (user_id, livre_id, bookingdate, position) VALUES ("
+                +pBooking.getUser_id()+","+pBooking.getLivre_id()+","+expireDate+","+pBooking.getPosition()+");COMMIT; ";
+
+        try {
+            vJdbcTemplate.update(vSQL, vParams);
+
+        } catch (DuplicateKeyException vEx) {
+            LOGGER.error("Booking impossible ! id=" + pBooking.getId(), vEx);
+            // ...
+        }
+
+    }
 
 }

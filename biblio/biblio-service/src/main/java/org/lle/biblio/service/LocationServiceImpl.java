@@ -69,4 +69,9 @@ public class LocationServiceImpl extends AbstractService{
         getManagerFactory().getLocationManager().addProlo(expiration,id);
 
     }
+    public void addBooked (Booking pBooking){
+
+        getManagerFactory().getLocationManager().addBooked(pBooking);
+
+    }
 }

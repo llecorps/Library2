@@ -26,4 +26,6 @@ public interface LocationDao {
     List<Booking> getListReservation(int id);
 
     void addProlo(String expiration, int id);
+
+    void addBooked(Booking pBooking);
 }

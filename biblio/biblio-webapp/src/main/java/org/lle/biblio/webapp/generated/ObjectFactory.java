@@ -37,6 +37,7 @@ public class ObjectFactory {
     private final static QName _GetExemplaireResponse_QNAME = new QName("http://service.biblio.lle.org/", "getExemplaireResponse");
     private final static QName _GetListLocation_QNAME = new QName("http://service.biblio.lle.org/", "getListLocation");
     private final static QName _ListLocationResponse_QNAME = new QName("http://service.biblio.lle.org/", "listLocationResponse");
+    private final static QName _AddBooked_QNAME = new QName("http://service.biblio.lle.org/", "addBooked");
     private final static QName _AddLocation_QNAME = new QName("http://service.biblio.lle.org/", "addLocation");
     private final static QName _DoLogin_QNAME = new QName("http://service.biblio.lle.org/", "DoLogin");
     private final static QName _NotFoundException_QNAME = new QName("http://service.biblio.lle.org/", "NotFoundException");
@@ -48,6 +49,7 @@ public class ObjectFactory {
     private final static QName _GetLocation_QNAME = new QName("http://service.biblio.lle.org/", "getLocation");
     private final static QName _GetAuteurResponse_QNAME = new QName("http://service.biblio.lle.org/", "getAuteurResponse");
     private final static QName _GetLocationResponse_QNAME = new QName("http://service.biblio.lle.org/", "getLocationResponse");
+    private final static QName _AddBookedResponse_QNAME = new QName("http://service.biblio.lle.org/", "addBookedResponse");
     private final static QName _GetLivreResponse_QNAME = new QName("http://service.biblio.lle.org/", "getLivreResponse");
     private final static QName _ListLocation_QNAME = new QName("http://service.biblio.lle.org/", "listLocation");
     private final static QName _GetListReservation_QNAME = new QName("http://service.biblio.lle.org/", "getListReservation");
@@ -102,6 +104,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AddBookedResponse }
+     * 
+     */
+    public AddBookedResponse createAddBookedResponse() {
+        return new AddBookedResponse();
+    }
+
+    /**
      * Create an instance of {@link GetLivreResponse }
      * 
      */
@@ -131,6 +141,14 @@ public class ObjectFactory {
      */
     public DoLogin createDoLogin() {
         return new DoLogin();
+    }
+
+    /**
+     * Create an instance of {@link AddBooked }
+     * 
+     */
+    public AddBooked createAddBooked() {
+        return new AddBooked();
     }
 
     /**
@@ -451,6 +469,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddBooked }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "addBooked")
+    public JAXBElement<AddBooked> createAddBooked(AddBooked value) {
+        return new JAXBElement<AddBooked>(_AddBooked_QNAME, AddBooked.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AddLocation }{@code >}}
      * 
      */
@@ -547,6 +574,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "getLocationResponse")
     public JAXBElement<GetLocationResponse> createGetLocationResponse(GetLocationResponse value) {
         return new JAXBElement<GetLocationResponse>(_GetLocationResponse_QNAME, GetLocationResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddBookedResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "addBookedResponse")
+    public JAXBElement<AddBookedResponse> createAddBookedResponse(AddBookedResponse value) {
+        return new JAXBElement<AddBookedResponse>(_AddBookedResponse_QNAME, AddBookedResponse.class, null, value);
     }
 
     /**
