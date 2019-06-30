@@ -33,7 +33,7 @@
 
 
 
-            <s:a action="booked" class="btn btn-outline-warning">Booking;
+            <s:a action="booked" class="btn btn-outline-link">R&eacute;servation
                 <s:param name="id" value="livre.id" />
             </s:a>
 

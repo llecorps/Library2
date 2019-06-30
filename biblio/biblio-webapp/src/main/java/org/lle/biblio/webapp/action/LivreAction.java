@@ -102,8 +102,8 @@ public class LivreAction extends ActionSupport implements SessionAware {
             int vExmplaire = pBiblioService.getExemplaire(livre.getId());
             if (vExmplaire == livre.getExemplaire()){
 
-                this.addActionError("ouvrage non disponible !");
-                vResult = ActionSupport.ERROR;
+                //this.addActionError("ouvrage non disponible !");
+                vResult = ActionSupport.NONE;
 
             }else {
 
@@ -132,7 +132,8 @@ public class LivreAction extends ActionSupport implements SessionAware {
 
     public String doBook() {
 
-        String vResult = ActionSupport.INPUT;
+
+       // String vResult = ActionSupport.INPUT;
 
         BiblioService_Service pBiblio = new BiblioService_Service();
         BiblioService pBiblioService = pBiblio.getBiblioServicePort();
@@ -161,13 +162,14 @@ public class LivreAction extends ActionSupport implements SessionAware {
                 pBooking.setPosition(vPosition);
 
                 //Service
-                //pBiblioService.addBooked( Booking pBooking);
+                pBiblioService.addBooked(pBooking);
 
-                vResult = ActionSupport.SUCCESS;
+               // vResult = ActionSupport.SUCCESS;
 
         }
 
-        return vResult;
+       // return vResult;
+        return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
     }
 
     public String doProlo() {

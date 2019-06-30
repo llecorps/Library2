@@ -23,6 +23,8 @@ public class DisplayAction extends ActionSupport implements SessionAware {
     private List<Emprunt> listEmprunt;
     private Utilisateur utilisateur;
     private String prolongation;
+    private List<Booking> listBooking;
+    private List<Emprunt> listResa;
 
     public String getProlongation() {
         return prolongation;
@@ -90,6 +92,21 @@ public class DisplayAction extends ActionSupport implements SessionAware {
 
     private Map<String, Object> session;
 
+    public List<Booking> getListBooking() {
+        return listBooking;
+    }
+
+    public void setListBooking(List<Booking> listBooking) {
+        this.listBooking = listBooking;
+    }
+
+    public List<Emprunt> getListResa() {
+        return listResa;
+    }
+
+    public void setListResa(List<Emprunt> listResa) {
+        this.listResa = listResa;
+    }
 
     @Override
     public void setSession(Map<String, Object> pSession) {
@@ -131,6 +148,28 @@ public class DisplayAction extends ActionSupport implements SessionAware {
                 }
 
                 listEmprunt.add(vEmprunt);
+
+            }
+            //listbooked
+
+            listBooking = pBiblioService.getListReservation(utilisateur.getId());
+            listResa = new ArrayList<Emprunt>();
+
+            for (Booking book : listBooking){
+
+                Emprunt vEmprunt = new Emprunt();
+
+                livre = pBiblioService.getLivre(book.getLivreId());
+                auteur = pBiblioService.getAuteur(livre.getAuteurId());
+
+                vEmprunt.setTitre(livre.getTitre());
+                vEmprunt.setDescription(livre.getDescription());
+                vEmprunt.setGenre(livre.getGenre());
+                vEmprunt.setNom(auteur.getNom());
+                vEmprunt.setId(livre.getId());
+
+
+                listResa.add(vEmprunt);
 
             }
             vResult = ActionSupport.SUCCESS;

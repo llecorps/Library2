@@ -99,10 +99,40 @@
             <interceptor-ref name="defaultStack" />
             <interceptor-ref name="authenticatedStack" />
 
-            <result name="error">/jsp/livre/booked.jsp</result>
+            <result name="none">/jsp/livre/booked.jsp</result>
             <result name="success">/jsp/livre/borrow.jsp</result>
+            <result name="error">/jsp/error.jsp</result>
 
         </action>
+
+        <action name="booked" class="org.lle.biblio.webapp.action.LivreAction" method="doBook">
+
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="authenticatedStack" />
+
+            <result name="error">/jsp/error.jsp</result>
+            <result name="success" type="redirectAction">display</result>
+
+
+        </action>
+
+        <action name="cancelled" class="org.lle.biblio.webapp.action.LivreAction" method="doCancel">
+
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="authenticatedStack" />
+
+            <result name="error">/jsp/error.jsp</result>
+            <result name="success" type="redirectAction">display</result>
+
+
+        </action>
+
 
         <action name="dispo" class="org.lle.biblio.webapp.action.DisplayAction" method="doDispo">
             <result>/jsp/utilisateur/display.jsp</result>
@@ -125,18 +155,7 @@
 
         </action>
 
-        <action name="booked" class="org.lle.biblio.webapp.action.LivreAction" method="doBook">
 
-            <interceptor-ref name="store">
-                <param name="operationMode">STORE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack" />
-            <interceptor-ref name="authenticatedStack" />
-
-            <result name="error">/jsp/error.jsp</result>
-            <result name="success" type="redirectAction">display</result>
-
-        </action>
 
     </package>
 
