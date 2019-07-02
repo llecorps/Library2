@@ -74,4 +74,9 @@ public class LocationServiceImpl extends AbstractService{
         getManagerFactory().getLocationManager().addBooked(pBooking);
 
     }
+    public void delBooked (int id){
+
+        getManagerFactory().getLocationManager().delBooked(id);
+
+    }
 }

@@ -16,6 +16,7 @@ import java.util.Map;
 public class DisplayAction extends ActionSupport implements SessionAware {
 
     private Integer id;
+    private Integer Resaid;
     private Livre livre;
     private Auteur auteur;
     private String login;
@@ -25,6 +26,14 @@ public class DisplayAction extends ActionSupport implements SessionAware {
     private String prolongation;
     private List<Booking> listBooking;
     private List<Emprunt> listResa;
+
+    public Integer getResaid() {
+        return Resaid;
+    }
+
+    public void setResaid(Integer resaid) {
+        Resaid = resaid;
+    }
 
     public String getProlongation() {
         return prolongation;
@@ -159,6 +168,7 @@ public class DisplayAction extends ActionSupport implements SessionAware {
 
                 Emprunt vEmprunt = new Emprunt();
 
+                Resaid = book.getId();
                 livre = pBiblioService.getLivre(book.getLivreId());
                 auteur = pBiblioService.getAuteur(livre.getAuteurId());
 

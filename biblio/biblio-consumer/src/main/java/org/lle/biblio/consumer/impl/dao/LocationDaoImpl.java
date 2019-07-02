@@ -179,4 +179,23 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
 
     }
 
+    @Override
+    public void delBooked(int id) {
+
+        BeanPropertySqlParameterSource vParams = new BeanPropertySqlParameterSource(id);
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+
+
+        String vSQL = "delete FROM public.booking where id="+id+";COMMIT; ";
+
+        try {
+            vJdbcTemplate.update(vSQL, vParams);
+
+        } catch (DuplicateKeyException vEx) {
+            LOGGER.error("Annulation impossible ! id=" + id, vEx);
+            // ...
+        }
+
+    }
+
 }

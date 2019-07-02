@@ -28,4 +28,6 @@ public interface LocationDao {
     void addProlo(String expiration, int id);
 
     void addBooked(Booking pBooking);
+
+    void delBooked(int id);
 }

@@ -15,6 +15,7 @@ import java.util.Map;
 public class LivreAction extends ActionSupport implements SessionAware {
 
     private Integer id;
+    private Integer Resaid;
     private Livre livre;
     private Auteur auteur;
     private String login;
@@ -62,12 +63,19 @@ public class LivreAction extends ActionSupport implements SessionAware {
 
     private Map<String, Object> session;
 
+    public Integer getResaid() {
+        return Resaid;
+    }
+
+    public void setResaid(Integer resaid) {
+        Resaid = resaid;
+    }
+
 
     @Override
     public void setSession(Map<String, Object> pSession) {
         this.session = pSession;
     }
-
 
 
     public String doDetail() {
@@ -89,7 +97,7 @@ public class LivreAction extends ActionSupport implements SessionAware {
 
     public String doRent() {
 
-       String vResult = ActionSupport.INPUT;
+        String vResult = ActionSupport.INPUT;
 
         BiblioService_Service pBiblio = new BiblioService_Service();
         BiblioService pBiblioService = pBiblio.getBiblioServicePort();
@@ -100,12 +108,12 @@ public class LivreAction extends ActionSupport implements SessionAware {
 
             //test exemplaire
             int vExmplaire = pBiblioService.getExemplaire(livre.getId());
-            if (vExmplaire == livre.getExemplaire()){
+            if (vExmplaire == livre.getExemplaire()) {
 
                 //this.addActionError("ouvrage non disponible !");
                 vResult = ActionSupport.NONE;
 
-            }else {
+            } else {
 
                 Calendar expireDate = Calendar.getInstance();
                 expireDate.add(Calendar.DATE, 28);
@@ -133,7 +141,7 @@ public class LivreAction extends ActionSupport implements SessionAware {
     public String doBook() {
 
 
-       // String vResult = ActionSupport.INPUT;
+        // String vResult = ActionSupport.INPUT;
 
         BiblioService_Service pBiblio = new BiblioService_Service();
         BiblioService pBiblioService = pBiblio.getBiblioServicePort();
@@ -142,33 +150,33 @@ public class LivreAction extends ActionSupport implements SessionAware {
         if (id != null) {
 
 
-                //bookingate
-                Calendar now = Calendar.getInstance();
-                Date date = now.getTime();
-                SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
-                String bookingdate = formatter.format(date);
+            //bookingate
+            Calendar now = Calendar.getInstance();
+            Date date = now.getTime();
+            SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
+            String bookingdate = formatter.format(date);
 
-                //user_id
-                Utilisateur vUser = (Utilisateur) this.session.get("utilisateur");
+            //user_id
+            Utilisateur vUser = (Utilisateur) this.session.get("utilisateur");
 
-                //position
-                int vPosition = 1;
-                //Bean Booking
+            //position
+            int vPosition = 1;
+            //Bean Booking
 
-                Booking pBooking = new Booking();
-                pBooking.setBookingdate(bookingdate);
-                pBooking.setLivreId(id);
-                pBooking.setUserId(vUser.getId());
-                pBooking.setPosition(vPosition);
+            Booking pBooking = new Booking();
+            pBooking.setBookingdate(bookingdate);
+            pBooking.setLivreId(id);
+            pBooking.setUserId(vUser.getId());
+            pBooking.setPosition(vPosition);
 
-                //Service
-                pBiblioService.addBooked(pBooking);
+            //Service
+            pBiblioService.addBooked(pBooking);
 
-               // vResult = ActionSupport.SUCCESS;
+            // vResult = ActionSupport.SUCCESS;
 
         }
 
-       // return vResult;
+        // return vResult;
         return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
     }
 
@@ -180,11 +188,11 @@ public class LivreAction extends ActionSupport implements SessionAware {
 
         if (id != null) {
 
-            System.out.println("Id du livre est:" +id);
+            System.out.println("Id du livre est:" + id);
 
             location = pBiblioService.getLivrelocation(id);
 
-            if (location.isProlongation() == true){
+            if (location.isProlongation() == true) {
 
                 Calendar expireDate = Calendar.getInstance();
                 expireDate.add(Calendar.DATE, 28);
@@ -192,9 +200,9 @@ public class LivreAction extends ActionSupport implements SessionAware {
                 SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
                 String dateRetour = formatter.format(date);
 
-                pBiblioService.addProlo(dateRetour,location.getId());
+                pBiblioService.addProlo(dateRetour, location.getId());
 
-            }else{
+            } else {
 
                 System.out.println("Prolongation non possible!");
             }
@@ -205,4 +213,19 @@ public class LivreAction extends ActionSupport implements SessionAware {
 
     }
 
+    public String doCancel() {
+
+        BiblioService_Service pBiblio = new BiblioService_Service();
+
+        BiblioService pBiblioService = pBiblio.getBiblioServicePort();
+
+        if (Resaid != null) {
+
+            pBiblioService.delBooked(Resaid);
+        }
+
+        return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
+    }
 }
+
+

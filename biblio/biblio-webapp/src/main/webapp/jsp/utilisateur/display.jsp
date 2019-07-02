@@ -63,8 +63,8 @@
                         Titre:&nbsp<s:property value="titre"/>
                         Description:&nbsp<s:property value="description"/>
                         Genre:&nbsp<s:property value="genre"/>
-                        <s:a action="cancel" class="btn btn-outline-warning">Annulation
-                            <s:param name="id" value="id" />
+                        <s:a action="cancelBook" class="btn btn-outline-warning">Annulation
+                            <s:param name="Resaid" value="Resaid" />
                         </s:a>
                     </li>
                 </s:iterator>

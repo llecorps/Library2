@@ -133,6 +133,16 @@ public class BiblioService extends AbstractService{
     }
 
     @WebMethod
+    public void delBooked(int id){
+
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        vLocationService.delBooked(id);
+
+    }
+
+    @WebMethod
     public int getExemplaire(int id){
 
         LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);

@@ -95,4 +95,10 @@ public class LocationManagerImpl extends AbstractManager implements LocationMana
         getDaoFactory().getLocationDao().addBooked(pBooking);
 
     }
+
+    @Override
+    public void delBooked(int id) {
+
+        getDaoFactory().getLocationDao().delBooked(id);
+    }
 }
