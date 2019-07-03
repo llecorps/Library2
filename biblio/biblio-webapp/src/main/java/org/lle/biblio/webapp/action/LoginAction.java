@@ -37,6 +37,15 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
     private List<Emprunt> listEmprunt;
     private List<Booking> listBooking;
     private List<Emprunt> listResa;
+    private Integer Resaid;
+
+    public Integer getResaid() {
+        return Resaid;
+    }
+
+    public void setResaid(Integer resaid) {
+        Resaid = resaid;
+    }
 
     public String getProlongation() {
         return prolongation;
@@ -199,6 +208,8 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
                     for (Booking book : listBooking){
 
                         Emprunt vEmprunt = new Emprunt();
+
+                        Resaid = book.getId();
 
                         livre = pBiblioService.getLivre(book.getLivreId());
                         auteur = pBiblioService.getAuteur(livre.getAuteurId());

@@ -105,6 +105,19 @@
 
         </action>
 
+        <action name="borrow" class="org.lle.biblio.webapp.action.LivreAction" method="doLoc">
+
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="authenticatedStack" />
+
+            <result name="error">/jsp/error.jsp</result>
+            <result name="success" type="redirectAction">display</result>
+
+        </action>
+
         <action name="booked" class="org.lle.biblio.webapp.action.LivreAction" method="doBook">
 
             <interceptor-ref name="store">
