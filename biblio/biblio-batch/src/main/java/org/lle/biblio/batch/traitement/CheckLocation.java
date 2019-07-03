@@ -21,7 +21,7 @@ import java.util.Properties;
  */
 public class CheckLocation extends AbstractTraitement{
 
-    /** Logger pour la classe */
+    /** Logger pour la classe  ajout ticket strus2*/
     private static final Log LOGGER = LogFactory.getLog(CheckLocation.class);
 
     private List<Location> listLocation;
