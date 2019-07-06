@@ -31,7 +31,7 @@
                 <li><b>Nombre d'exemplaires:&nbsp</b><s:property value="livre.exemplaire" /></li>
             </ul>
 
-            <s:a action="emprunt" class="btn btn-outline-info">Voir Disponibilit&eacute;
+            <s:a action="dispo" class="btn btn-outline-info">Voir Disponibilit&eacute;
               <s:param name="id" value="livre.id" />
             </s:a>
 

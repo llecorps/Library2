@@ -7,6 +7,7 @@ import org.lle.biblio.webapp.generated.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,6 +21,24 @@ public class LivreAction extends ActionSupport implements SessionAware {
     private Auteur auteur;
     private String login;
     private Location location;
+    private List<Location> listLocation;
+    private boolean autho;
+
+    public boolean isAutho() {
+        return autho;
+    }
+
+    public void setAutho(boolean autho) {
+        this.autho = autho;
+    }
+
+    public List<Location> getListLocation() {
+        return listLocation;
+    }
+
+    public void setListLocation(List<Location> listLocation) {
+        this.listLocation = listLocation;
+    }
 
     public Location getLocation() {
         return location;
@@ -189,34 +208,49 @@ public class LivreAction extends ActionSupport implements SessionAware {
         BiblioService_Service pBiblio = new BiblioService_Service();
         BiblioService pBiblioService = pBiblio.getBiblioServicePort();
 
+        //user_id
+        Utilisateur vUser = (Utilisateur) this.session.get("utilisateur");
+
+       autho=true;
+
         //livre_id
         if (id != null) {
 
+            listLocation = pBiblioService.getListLocation(vUser.getId());
 
-            //bookingate
-            Calendar now = Calendar.getInstance();
-            Date date = now.getTime();
-            SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
-            String bookingdate = formatter.format(date);
+            for (Location loc : listLocation){
+                if (id == loc.getLivreId()){
 
-            //user_id
-            Utilisateur vUser = (Utilisateur) this.session.get("utilisateur");
+                    autho=false;
+                }
+            }
 
-            //position
-            int vPosition = 1;
-            //Bean Booking
+            if(autho) {
 
-            Booking pBooking = new Booking();
-            pBooking.setBookingdate(bookingdate);
-            pBooking.setLivreId(id);
-            pBooking.setUserId(vUser.getId());
-            pBooking.setPosition(vPosition);
+                //bookingate
+                Calendar now = Calendar.getInstance();
+                Date date = now.getTime();
+                SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
+                String bookingdate = formatter.format(date);
 
-            //Service
-            pBiblioService.addBooked(pBooking);
 
-            // vResult = ActionSupport.SUCCESS;
+                //position
+                int vPosition = 1;
+                //Bean Booking
 
+                Booking pBooking = new Booking();
+                pBooking.setBookingdate(bookingdate);
+                pBooking.setLivreId(id);
+                pBooking.setUserId(vUser.getId());
+                pBooking.setPosition(vPosition);
+
+                //Service
+                pBiblioService.addBooked(pBooking);
+
+                // vResult = ActionSupport.SUCCESS;
+
+
+            }
         }
 
         // return vResult;
@@ -268,6 +302,35 @@ public class LivreAction extends ActionSupport implements SessionAware {
         }
 
         return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
+    }
+
+    public String doDispo() {
+
+        String vResult = ActionSupport.INPUT;
+
+        BiblioService_Service pBiblio = new BiblioService_Service();
+        BiblioService pBiblioService = pBiblio.getBiblioServicePort();
+
+        if (id != null) {
+
+            livre = pBiblioService.getLivre(id);
+
+            //test exemplaire
+            int vExmplaire = pBiblioService.getExemplaire(livre.getId());
+            if (vExmplaire == livre.getExemplaire()) {
+
+                //this.addActionError("ouvrage non disponible !");
+                vResult = ActionSupport.NONE;
+
+            } else {
+
+
+
+                vResult = ActionSupport.SUCCESS;
+            }
+        }
+
+        return vResult;
     }
 }
 
