@@ -30,4 +30,8 @@ public interface LocationDao {
     void addBooked(Booking pBooking);
 
     void delBooked(int id);
+
+    int getNbreLocation (int id);
+
+    int getPosition (int id) throws NotFoundException;
 }

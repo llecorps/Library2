@@ -76,6 +76,27 @@ public class LocationManagerImpl extends AbstractManager implements LocationMana
     }
 
     @Override
+    public int getNbreLocation(int id) {
+
+        int vNbreLocation = getDaoFactory().getLocationDao().getNbreLocation(id);
+
+        return vNbreLocation;
+    }
+
+    @Override
+    public int getPosition(int id) {
+
+        int vPosition = 0;
+        try {
+            vPosition = getDaoFactory().getLocationDao().getPosition(id);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return vPosition;
+    }
+
+    @Override
     public List<Booking> getListReservation(int id) {
 
         List<Booking> vListReservation = getDaoFactory().getLocationDao().getListReservation(id);

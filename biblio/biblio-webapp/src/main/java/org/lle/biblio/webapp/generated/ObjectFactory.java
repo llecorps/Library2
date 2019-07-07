@@ -35,6 +35,7 @@ public class ObjectFactory {
     private final static QName _AddProloResponse_QNAME = new QName("http://service.biblio.lle.org/", "addProloResponse");
     private final static QName _GetAuteur_QNAME = new QName("http://service.biblio.lle.org/", "getAuteur");
     private final static QName _GetExemplaireResponse_QNAME = new QName("http://service.biblio.lle.org/", "getExemplaireResponse");
+    private final static QName _GetPosition_QNAME = new QName("http://service.biblio.lle.org/", "getPosition");
     private final static QName _GetListLocation_QNAME = new QName("http://service.biblio.lle.org/", "getListLocation");
     private final static QName _ListLocationResponse_QNAME = new QName("http://service.biblio.lle.org/", "listLocationResponse");
     private final static QName _AddBooked_QNAME = new QName("http://service.biblio.lle.org/", "addBooked");
@@ -42,6 +43,7 @@ public class ObjectFactory {
     private final static QName _DoLogin_QNAME = new QName("http://service.biblio.lle.org/", "DoLogin");
     private final static QName _NotFoundException_QNAME = new QName("http://service.biblio.lle.org/", "NotFoundException");
     private final static QName _AddLocationResponse_QNAME = new QName("http://service.biblio.lle.org/", "addLocationResponse");
+    private final static QName _GetPositionResponse_QNAME = new QName("http://service.biblio.lle.org/", "getPositionResponse");
     private final static QName _DoResultLivreResponse_QNAME = new QName("http://service.biblio.lle.org/", "DoResultLivreResponse");
     private final static QName _AddProlo_QNAME = new QName("http://service.biblio.lle.org/", "addProlo");
     private final static QName _DelBookedResponse_QNAME = new QName("http://service.biblio.lle.org/", "delBookedResponse");
@@ -50,11 +52,13 @@ public class ObjectFactory {
     private final static QName _GetLocation_QNAME = new QName("http://service.biblio.lle.org/", "getLocation");
     private final static QName _GetAuteurResponse_QNAME = new QName("http://service.biblio.lle.org/", "getAuteurResponse");
     private final static QName _GetLocationResponse_QNAME = new QName("http://service.biblio.lle.org/", "getLocationResponse");
+    private final static QName _GetNbreLocation_QNAME = new QName("http://service.biblio.lle.org/", "getNbreLocation");
     private final static QName _AddBookedResponse_QNAME = new QName("http://service.biblio.lle.org/", "addBookedResponse");
     private final static QName _GetLivreResponse_QNAME = new QName("http://service.biblio.lle.org/", "getLivreResponse");
     private final static QName _ListLocation_QNAME = new QName("http://service.biblio.lle.org/", "listLocation");
     private final static QName _GetListReservation_QNAME = new QName("http://service.biblio.lle.org/", "getListReservation");
     private final static QName _DelBooked_QNAME = new QName("http://service.biblio.lle.org/", "delBooked");
+    private final static QName _GetNbreLocationResponse_QNAME = new QName("http://service.biblio.lle.org/", "getNbreLocationResponse");
     private final static QName _GetLivre_QNAME = new QName("http://service.biblio.lle.org/", "getLivre");
     private final static QName _GetUtilisateurResponse_QNAME = new QName("http://service.biblio.lle.org/", "getUtilisateurResponse");
 
@@ -71,6 +75,14 @@ public class ObjectFactory {
      */
     public GetLocationResponse createGetLocationResponse() {
         return new GetLocationResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetNbreLocation }
+     * 
+     */
+    public GetNbreLocation createGetNbreLocation() {
+        return new GetNbreLocation();
     }
 
     /**
@@ -138,6 +150,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetPositionResponse }
+     * 
+     */
+    public GetPositionResponse createGetPositionResponse() {
+        return new GetPositionResponse();
+    }
+
+    /**
      * Create an instance of {@link DoLogin }
      * 
      */
@@ -191,6 +211,14 @@ public class ObjectFactory {
      */
     public DelBooked createDelBooked() {
         return new DelBooked();
+    }
+
+    /**
+     * Create an instance of {@link GetNbreLocationResponse }
+     * 
+     */
+    public GetNbreLocationResponse createGetNbreLocationResponse() {
+        return new GetNbreLocationResponse();
     }
 
     /**
@@ -279,6 +307,14 @@ public class ObjectFactory {
      */
     public GetListLocation createGetListLocation() {
         return new GetListLocation();
+    }
+
+    /**
+     * Create an instance of {@link GetPosition }
+     * 
+     */
+    public GetPosition createGetPosition() {
+        return new GetPosition();
     }
 
     /**
@@ -469,6 +505,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetPosition }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "getPosition")
+    public JAXBElement<GetPosition> createGetPosition(GetPosition value) {
+        return new JAXBElement<GetPosition>(_GetPosition_QNAME, GetPosition.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetListLocation }{@code >}}
      * 
      */
@@ -529,6 +574,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "addLocationResponse")
     public JAXBElement<AddLocationResponse> createAddLocationResponse(AddLocationResponse value) {
         return new JAXBElement<AddLocationResponse>(_AddLocationResponse_QNAME, AddLocationResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetPositionResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "getPositionResponse")
+    public JAXBElement<GetPositionResponse> createGetPositionResponse(GetPositionResponse value) {
+        return new JAXBElement<GetPositionResponse>(_GetPositionResponse_QNAME, GetPositionResponse.class, null, value);
     }
 
     /**
@@ -604,6 +658,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetNbreLocation }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "getNbreLocation")
+    public JAXBElement<GetNbreLocation> createGetNbreLocation(GetNbreLocation value) {
+        return new JAXBElement<GetNbreLocation>(_GetNbreLocation_QNAME, GetNbreLocation.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AddBookedResponse }{@code >}}
      * 
      */
@@ -646,6 +709,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "delBooked")
     public JAXBElement<DelBooked> createDelBooked(DelBooked value) {
         return new JAXBElement<DelBooked>(_DelBooked_QNAME, DelBooked.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetNbreLocationResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "getNbreLocationResponse")
+    public JAXBElement<GetNbreLocationResponse> createGetNbreLocationResponse(GetNbreLocationResponse value) {
+        return new JAXBElement<GetNbreLocationResponse>(_GetNbreLocationResponse_QNAME, GetNbreLocationResponse.class, null, value);
     }
 
     /**

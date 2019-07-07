@@ -126,6 +126,8 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
         return vListReservation;
     }
 
+
+
     @Override
     public List<Location> listLocation() {
 
@@ -136,6 +138,36 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
 
         List<Location> vListLocation = vJdbcTemplate.query(vSQL, vRowMapper);
         return vListLocation;
+    }
+
+    @Override
+    public int getNbreLocation(int pId) {
+
+        String vSQL = "SELECT COUNT(*) FROM booking WHERE livre_id ="+pId;
+
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        MapSqlParameterSource vParams = new MapSqlParameterSource("livre_id", pId);
+
+            int vNbreLocation = vJdbcTemplate.queryForObject(vSQL, vParams, Integer.class);
+            return vNbreLocation;
+    }
+
+    @Override
+    public int getPosition(int pId) throws NotFoundException {
+
+        String vSQL = "select position from booking where livre_id="+pId+"order by position desc limit 1;";
+
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        MapSqlParameterSource vParams = new MapSqlParameterSource("livre_id", pId);
+
+        try {
+
+            int vPosition = vJdbcTemplate.queryForObject(vSQL, vParams, Integer.class);
+            return vPosition;
+        } catch (IncorrectResultSizeDataAccessException vEx) {
+            throw new NotFoundException("Emprunt non trouvé utilisateur_id=" + pId);
+
+        }
     }
 
     @Override

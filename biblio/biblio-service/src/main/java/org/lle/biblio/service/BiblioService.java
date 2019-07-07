@@ -80,6 +80,28 @@ public class BiblioService extends AbstractService{
     }
 
     @WebMethod
+    public int getNbreLocation( int id){
+
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        int vNbreLocation = vLocationService.getNbreLocation(id);
+
+        return  vNbreLocation;
+    }
+
+    @WebMethod
+    public int getPosition( int id){
+
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        int vPosition = vLocationService.getPosition(id);
+
+        return  vPosition;
+    }
+
+    @WebMethod
     public List<Booking> getListReservation(int id){
 
 

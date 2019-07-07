@@ -203,7 +203,7 @@ public class LivreAction extends ActionSupport implements SessionAware {
     public String doBook() {
 
 
-        // String vResult = ActionSupport.INPUT;
+        String vResult = ActionSupport.INPUT;
 
         BiblioService_Service pBiblio = new BiblioService_Service();
         BiblioService pBiblioService = pBiblio.getBiblioServicePort();
@@ -222,8 +222,20 @@ public class LivreAction extends ActionSupport implements SessionAware {
                 if (id == loc.getLivreId()){
 
                     autho=false;
+                     vResult = ActionSupport.ERROR;
                 }
             }
+
+            //nbre de résas
+
+            int nbreExemplaire = pBiblioService.getExemplaire(id);
+            int nbreMax = 2*nbreExemplaire;
+            int nbreResa = pBiblioService.getNbreLocation(id);
+            if (nbreResa >= nbreMax ){
+                autho=false;
+            }
+
+
 
             if(autho) {
 
@@ -233,9 +245,10 @@ public class LivreAction extends ActionSupport implements SessionAware {
                 SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
                 String bookingdate = formatter.format(date);
 
-
                 //position
-                int vPosition = 1;
+                int vLastPos = pBiblioService.getPosition(id);
+                int vPosition = vLastPos+1;
+
                 //Bean Booking
 
                 Booking pBooking = new Booking();
@@ -247,14 +260,14 @@ public class LivreAction extends ActionSupport implements SessionAware {
                 //Service
                 pBiblioService.addBooked(pBooking);
 
-                // vResult = ActionSupport.SUCCESS;
+                vResult = ActionSupport.SUCCESS;
 
 
             }
         }
 
-        // return vResult;
-        return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
+         return vResult;
+        //return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
     }
 
     public String doProlo() {
