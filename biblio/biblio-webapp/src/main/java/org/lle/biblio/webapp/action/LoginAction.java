@@ -38,6 +38,33 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
     private List<Booking> listBooking;
     private List<Emprunt> listResa;
     private Integer Resaid;
+    private int vPosition;
+    private String dateRetour;
+    private Location vLocation;
+
+    public Location getvLocation() {
+        return vLocation;
+    }
+
+    public void setvLocation(Location vLocation) {
+        this.vLocation = vLocation;
+    }
+
+    public String getDateRetour() {
+        return dateRetour;
+    }
+
+    public void setDateRetour(String dateRetour) {
+        this.dateRetour = dateRetour;
+    }
+
+    public int getvPosition() {
+        return vPosition;
+    }
+
+    public void setvPosition(int vPosition) {
+        this.vPosition = vPosition;
+    }
 
     public Integer getResaid() {
         return Resaid;
@@ -210,6 +237,11 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
                         Emprunt vEmprunt = new Emprunt();
 
                         Resaid = book.getId();
+
+                        vPosition=book.getPosition();
+
+                        vLocation=pBiblioService.getLivrelocation(book.getLivreId());
+                        dateRetour = vLocation.getExpiredate();
 
                         livre = pBiblioService.getLivre(book.getLivreId());
                         auteur = pBiblioService.getAuteur(livre.getAuteurId());
