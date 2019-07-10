@@ -171,6 +171,19 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
     }
 
     @Override
+    public String getExpiredate(int pId)  {
+
+        String vSQL = "select expiredate from location where livre_id="+pId+"order by expiredate desc limit 1;";
+
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        MapSqlParameterSource vParams = new MapSqlParameterSource("livre_id", pId);
+
+            String vExpiredate = vJdbcTemplate.queryForObject(vSQL, vParams, String.class);
+            return vExpiredate;
+
+    }
+
+    @Override
     public void addProlo(String expiration, int pId) {
 
         String simpleQuote = "'";

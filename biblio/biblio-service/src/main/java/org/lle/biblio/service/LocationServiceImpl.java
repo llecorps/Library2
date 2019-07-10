@@ -77,6 +77,12 @@ public class LocationServiceImpl extends AbstractService{
 
         return vPosition;
     }
+    public String getExpiredate(int id){
+
+        String vExpiredate = getManagerFactory().getLocationManager().getExpiredate(id);
+
+        return vExpiredate;
+    }
 
     public void addProlo ( String expiration, int id){
 

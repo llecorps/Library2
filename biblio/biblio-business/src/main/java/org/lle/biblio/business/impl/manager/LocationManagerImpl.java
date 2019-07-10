@@ -97,6 +97,17 @@ public class LocationManagerImpl extends AbstractManager implements LocationMana
     }
 
     @Override
+    public String getExpiredate(int id) {
+
+
+
+           String vExpiredate = getDaoFactory().getLocationDao().getExpiredate(id);
+
+
+        return vExpiredate;
+    }
+
+    @Override
     public List<Booking> getListReservation(int id) {
 
         List<Booking> vListReservation = getDaoFactory().getLocationDao().getListReservation(id);

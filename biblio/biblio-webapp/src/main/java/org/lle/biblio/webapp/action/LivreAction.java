@@ -24,6 +24,24 @@ public class LivreAction extends ActionSupport implements SessionAware {
     private List<Location> listLocation;
     private boolean autho;
     public List<Booking> listResa;
+    private String expireDate;
+    private int nbreResa;
+
+    public int getNbreResa() {
+        return nbreResa;
+    }
+
+    public void setNbreResa(int nbreResa) {
+        this.nbreResa = nbreResa;
+    }
+
+    public String getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(String expireDate) {
+        this.expireDate = expireDate;
+    }
 
     public List<Booking> getListResa() {
         return listResa;
@@ -376,10 +394,24 @@ public class LivreAction extends ActionSupport implements SessionAware {
         if (id != null) {
 
             livre = pBiblioService.getLivre(id);
+            //user_id
+            Utilisateur vUser = (Utilisateur) this.session.get("utilisateur");
+
+            nbreResa = 0;
 
             //test exemplaire
             int vExmplaire = pBiblioService.getExemplaire(livre.getId());
             if (vExmplaire == livre.getExemplaire()) {
+
+                expireDate = pBiblioService.getExpiredate(id);
+
+                listResa = pBiblioService.getListReservation(vUser.getId());
+
+                for (Booking resa : listResa) {
+                    if (id == resa.getLivreId()) {
+                        nbreResa ++;
+                    }
+                }
 
                 //this.addActionError("ouvrage non disponible !");
                 vResult = ActionSupport.NONE;

@@ -34,4 +34,6 @@ public interface LocationDao {
     int getNbreLocation (int id);
 
     int getPosition (int id) throws NotFoundException;
+
+    String getExpiredate (int id);
 }

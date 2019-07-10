@@ -22,5 +22,6 @@ public interface LocationManager {
     void delBooked(int id);
     int getNbreLocation (int id);
     int getPosition (int id);
+    String getExpiredate (int id);
 
 }

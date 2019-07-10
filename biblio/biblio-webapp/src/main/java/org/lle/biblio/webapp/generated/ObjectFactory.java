@@ -53,11 +53,13 @@ public class ObjectFactory {
     private final static QName _GetAuteurResponse_QNAME = new QName("http://service.biblio.lle.org/", "getAuteurResponse");
     private final static QName _GetLocationResponse_QNAME = new QName("http://service.biblio.lle.org/", "getLocationResponse");
     private final static QName _GetNbreLocation_QNAME = new QName("http://service.biblio.lle.org/", "getNbreLocation");
+    private final static QName _GetExpiredate_QNAME = new QName("http://service.biblio.lle.org/", "getExpiredate");
     private final static QName _AddBookedResponse_QNAME = new QName("http://service.biblio.lle.org/", "addBookedResponse");
     private final static QName _GetLivreResponse_QNAME = new QName("http://service.biblio.lle.org/", "getLivreResponse");
     private final static QName _ListLocation_QNAME = new QName("http://service.biblio.lle.org/", "listLocation");
     private final static QName _GetListReservation_QNAME = new QName("http://service.biblio.lle.org/", "getListReservation");
     private final static QName _DelBooked_QNAME = new QName("http://service.biblio.lle.org/", "delBooked");
+    private final static QName _GetExpiredateResponse_QNAME = new QName("http://service.biblio.lle.org/", "getExpiredateResponse");
     private final static QName _GetNbreLocationResponse_QNAME = new QName("http://service.biblio.lle.org/", "getNbreLocationResponse");
     private final static QName _GetLivre_QNAME = new QName("http://service.biblio.lle.org/", "getLivre");
     private final static QName _GetUtilisateurResponse_QNAME = new QName("http://service.biblio.lle.org/", "getUtilisateurResponse");
@@ -131,6 +133,14 @@ public class ObjectFactory {
      */
     public GetLivreResponse createGetLivreResponse() {
         return new GetLivreResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetExpiredate }
+     * 
+     */
+    public GetExpiredate createGetExpiredate() {
+        return new GetExpiredate();
     }
 
     /**
@@ -211,6 +221,14 @@ public class ObjectFactory {
      */
     public DelBooked createDelBooked() {
         return new DelBooked();
+    }
+
+    /**
+     * Create an instance of {@link GetExpiredateResponse }
+     * 
+     */
+    public GetExpiredateResponse createGetExpiredateResponse() {
+        return new GetExpiredateResponse();
     }
 
     /**
@@ -667,6 +685,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetExpiredate }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "getExpiredate")
+    public JAXBElement<GetExpiredate> createGetExpiredate(GetExpiredate value) {
+        return new JAXBElement<GetExpiredate>(_GetExpiredate_QNAME, GetExpiredate.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AddBookedResponse }{@code >}}
      * 
      */
@@ -709,6 +736,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "delBooked")
     public JAXBElement<DelBooked> createDelBooked(DelBooked value) {
         return new JAXBElement<DelBooked>(_DelBooked_QNAME, DelBooked.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetExpiredateResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "getExpiredateResponse")
+    public JAXBElement<GetExpiredateResponse> createGetExpiredateResponse(GetExpiredateResponse value) {
+        return new JAXBElement<GetExpiredateResponse>(_GetExpiredateResponse_QNAME, GetExpiredateResponse.class, null, value);
     }
 
     /**

@@ -29,6 +29,8 @@
                 <li><b>Description :&nbsp</b> <s:property value="livre.description" /></li>
                 <li><b>Genre :&nbsp</b> <s:property value="livre.genre" /></li>
                 <li><b>Nombre d'exemplaires:&nbsp</b><s:property value="livre.exemplaire" /></li>
+                <li><b>Date de retour:&nbsp</b><s:property value="expireDate" /></li>
+                <li><b>Nombre de R&eacute;servation:&nbsp</b><s:property value="nbreResa" /></li>
             </ul>
 
 

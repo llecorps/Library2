@@ -102,6 +102,17 @@ public class BiblioService extends AbstractService{
     }
 
     @WebMethod
+    public String getExpiredate( int id){
+
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        String vExpiredate = vLocationService.getExpiredate(id);
+
+        return  vExpiredate;
+    }
+
+    @WebMethod
     public List<Booking> getListReservation(int id){
 
 
