@@ -23,6 +23,15 @@ public class LivreAction extends ActionSupport implements SessionAware {
     private Location location;
     private List<Location> listLocation;
     private boolean autho;
+    public List<Booking> listResa;
+
+    public List<Booking> getListResa() {
+        return listResa;
+    }
+
+    public void setListResa(List<Booking> listResa) {
+        this.listResa = listResa;
+    }
 
     public boolean isAutho() {
         return autho;
@@ -121,7 +130,23 @@ public class LivreAction extends ActionSupport implements SessionAware {
         BiblioService_Service pBiblio = new BiblioService_Service();
         BiblioService pBiblioService = pBiblio.getBiblioServicePort();
 
+        //user_id
+        Utilisateur vUser = (Utilisateur) this.session.get("utilisateur");
+/*
+        autho=true;
+
+        listResa = pBiblioService.getListReservation(vUser.getId());
+
+        for (Booking resa : listResa){
+            if (id == resa.getLivreId()){
+
+                autho=false;
+                vResult = ActionSupport.ERROR;
+            }
+        }*/
+
         if (id != null) {
+       // if (autho){
 
             livre = pBiblioService.getLivre(id);
 
@@ -140,7 +165,7 @@ public class LivreAction extends ActionSupport implements SessionAware {
                 SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
                 String dateRetour = formatter.format(date);
 
-                Utilisateur vUser = (Utilisateur) this.session.get("utilisateur");
+                //Utilisateur vUser = (Utilisateur) this.session.get("utilisateur");
 
                 Location pLocation = new Location();
                 pLocation.setExpiredate(dateRetour);
@@ -164,7 +189,20 @@ public class LivreAction extends ActionSupport implements SessionAware {
         BiblioService_Service pBiblio = new BiblioService_Service();
         BiblioService pBiblioService = pBiblio.getBiblioServicePort();
 
+        //user_id
+        Utilisateur vUser = (Utilisateur) this.session.get("utilisateur");
+
+
         if (id != null) {
+
+            listResa = pBiblioService.getListReservation(vUser.getId());
+
+            for (Booking resa : listResa){
+                if (id == resa.getLivreId()){
+
+                    pBiblioService.delBooked(resa.getId());
+                }
+            }
 
             livre = pBiblioService.getLivre(id);
 
@@ -183,7 +221,7 @@ public class LivreAction extends ActionSupport implements SessionAware {
                 SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
                 String dateRetour = formatter.format(date);
 
-                Utilisateur vUser = (Utilisateur) this.session.get("utilisateur");
+                //Utilisateur vUser = (Utilisateur) this.session.get("utilisateur");
 
                 Location pLocation = new Location();
                 pLocation.setExpiredate(dateRetour);
@@ -233,6 +271,17 @@ public class LivreAction extends ActionSupport implements SessionAware {
             int nbreResa = pBiblioService.getNbreLocation(id);
             if (nbreResa >= nbreMax ){
                 autho=false;
+                vResult = ActionSupport.ERROR;
+            }
+
+            listResa = pBiblioService.getListReservation(vUser.getId());
+
+            for (Booking resa : listResa){
+                if (id == resa.getLivreId()){
+
+                    autho=false;
+                    vResult = ActionSupport.ERROR;
+                }
             }
 
 
