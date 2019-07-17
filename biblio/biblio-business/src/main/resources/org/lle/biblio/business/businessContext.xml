@@ -8,4 +8,28 @@
     <bean id="txManagerBiblio" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSourceBiblio" />
     </bean>
+
+    <bean id="dataSourceBiblio" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://db-biblio.chgtbj384vos.us-east-1.rds.amazonaws.com:5432/biblio"/>
+        <property name="username" value="admbiblio"/>
+        <property name="password" value="Cartel01"/>
+    </bean>
+
+
+    <bean id="BusinessProxy"
+          class="org.lle.biblio.business.impl.BusinessProxyImpl"
+          scope="singleton"
+          factory-method="getInstance">
+        <constructor-arg ref="DaoProxy"/>
+        <constructor-arg ref="TransactionManager"/>
+    </bean>
+
+    <!-- DaoProxy -->
+    <bean id="DaoProxy" class="org.lle.biblio.consumer.impl.DaoProxyImpl" factory-method="getInstance">
+        <property name="auteurDao" ref="AuteurDaoImpl"/>
+    </bean>
+
 </beans>
+
+

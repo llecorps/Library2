@@ -23,7 +23,7 @@ public class LivreAction extends ActionSupport implements SessionAware {
     private Location location;
     private List<Location> listLocation;
     private boolean autho;
-    public List<Booking> listResa;
+    private List<Booking> listResa;
     private String expireDate;
     private int nbreResa;
 
