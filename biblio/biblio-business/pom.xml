@@ -55,6 +55,17 @@
             <artifactId>bval-jsr</artifactId>
         </dependency>
 
+        <!-- Drivers JDBC PostgreSQL -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+
+        <!-- Pool de connexion Commons DBCP -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+        </dependency>
 
         <!-- ===== Tests ===== -->
         <dependency>

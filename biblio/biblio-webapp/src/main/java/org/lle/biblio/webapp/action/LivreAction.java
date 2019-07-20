@@ -417,9 +417,6 @@ public class LivreAction extends ActionSupport implements SessionAware {
                 vResult = ActionSupport.NONE;
 
             } else {
-
-
-
                 vResult = ActionSupport.SUCCESS;
             }
         }
