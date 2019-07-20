@@ -1,6 +1,7 @@
 package org.lle.biblio.business.impl.manager;
 
 import org.lle.biblio.business.contract.manager.LocationManager;
+import org.lle.biblio.model.bean.livre.Booking;
 import org.lle.biblio.model.bean.location.Location;
 import org.lle.biblio.model.exception.NotFoundException;
 
@@ -75,9 +76,61 @@ public class LocationManagerImpl extends AbstractManager implements LocationMana
     }
 
     @Override
+    public int getNbreLocation(int id) {
+
+        int vNbreLocation = getDaoFactory().getLocationDao().getNbreLocation(id);
+
+        return vNbreLocation;
+    }
+
+    @Override
+    public int getPosition(int id) {
+
+        int vPosition = 0;
+        try {
+            vPosition = getDaoFactory().getLocationDao().getPosition(id);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return vPosition;
+    }
+
+    @Override
+    public String getExpiredate(int id) {
+
+
+
+           String vExpiredate = getDaoFactory().getLocationDao().getExpiredate(id);
+
+
+        return vExpiredate;
+    }
+
+    @Override
+    public List<Booking> getListReservation(int id) {
+
+        List<Booking> vListReservation = getDaoFactory().getLocationDao().getListReservation(id);
+
+        return vListReservation;
+    }
+
+    @Override
     public List<Location> listLocation() {
         List<Location> vListLocation = getDaoFactory().getLocationDao().listLocation();
 
         return vListLocation;
-}
+    }
+    @Override
+    public void addBooked (Booking pBooking) {
+
+        getDaoFactory().getLocationDao().addBooked(pBooking);
+
+    }
+
+    @Override
+    public void delBooked(int id) {
+
+        getDaoFactory().getLocationDao().delBooked(id);
+    }
 }

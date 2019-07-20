@@ -3,7 +3,9 @@ package org.lle.biblio.consumer.impl.dao;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.lle.biblio.consumer.contract.dao.LocationDao;
+import org.lle.biblio.consumer.impl.rowmapper.location.BookingRM;
 import org.lle.biblio.consumer.impl.rowmapper.location.LocationRM;
+import org.lle.biblio.model.bean.livre.Booking;
 import org.lle.biblio.model.bean.location.Location;
 import org.lle.biblio.model.exception.NotFoundException;
 import org.springframework.dao.DuplicateKeyException;
@@ -113,6 +115,20 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
     }
 
     @Override
+    public List<Booking> getListReservation(int id) {
+
+        String vSQL = "SELECT * FROM booking WHERE user_id="+id;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+
+        RowMapper<Booking> vRowMapper = new BookingRM();
+
+        List<Booking> vListReservation = vJdbcTemplate.query(vSQL, vRowMapper);
+        return vListReservation;
+    }
+
+
+
+    @Override
     public List<Location> listLocation() {
 
         String vSQL = "SELECT * FROM location ";
@@ -122,6 +138,49 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
 
         List<Location> vListLocation = vJdbcTemplate.query(vSQL, vRowMapper);
         return vListLocation;
+    }
+
+    @Override
+    public int getNbreLocation(int pId) {
+
+        String vSQL = "SELECT COUNT(*) FROM booking WHERE livre_id ="+pId;
+
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        MapSqlParameterSource vParams = new MapSqlParameterSource("livre_id", pId);
+
+            int vNbreLocation = vJdbcTemplate.queryForObject(vSQL, vParams, Integer.class);
+            return vNbreLocation;
+    }
+
+    @Override
+    public int getPosition(int pId) throws NotFoundException {
+
+        String vSQL = "select position from booking where livre_id="+pId+"order by position desc limit 1;";
+
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        MapSqlParameterSource vParams = new MapSqlParameterSource("livre_id", pId);
+
+        try {
+
+            int vPosition = vJdbcTemplate.queryForObject(vSQL, vParams, Integer.class);
+            return vPosition;
+        } catch (IncorrectResultSizeDataAccessException vEx) {
+            throw new NotFoundException("Emprunt non trouvé utilisateur_id=" + pId);
+
+        }
+    }
+
+    @Override
+    public String getExpiredate(int pId)  {
+
+        String vSQL = "select expiredate from location where livre_id="+pId+"order by expiredate desc limit 1;";
+
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        MapSqlParameterSource vParams = new MapSqlParameterSource("livre_id", pId);
+
+            String vExpiredate = vJdbcTemplate.queryForObject(vSQL, vParams, String.class);
+            return vExpiredate;
+
     }
 
     @Override
@@ -140,6 +199,47 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
 
         vJdbcTemplate.update(vSQL, vParams);
 
+
+    }
+    @Override
+    public void addBooked (Booking pBooking) {
+
+        String simpleQuote="'";
+        String expireDate = simpleQuote+pBooking.getBookingdate()+simpleQuote;
+
+        BeanPropertySqlParameterSource vParams = new BeanPropertySqlParameterSource(pBooking);
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+
+
+        String vSQL = "INSERT INTO booking (user_id, livre_id, bookingdate, position) VALUES ("
+                +pBooking.getUser_id()+","+pBooking.getLivre_id()+","+expireDate+","+pBooking.getPosition()+");COMMIT; ";
+
+        try {
+            vJdbcTemplate.update(vSQL, vParams);
+
+        } catch (DuplicateKeyException vEx) {
+            LOGGER.error("Booking impossible ! id=" + pBooking.getId(), vEx);
+            // ...
+        }
+
+    }
+
+    @Override
+    public void delBooked(int id) {
+
+        BeanPropertySqlParameterSource vParams = new BeanPropertySqlParameterSource(id);
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+
+
+        String vSQL = "delete FROM public.booking where id="+id+";COMMIT; ";
+
+        try {
+            vJdbcTemplate.update(vSQL, vParams);
+
+        } catch (DuplicateKeyException vEx) {
+            LOGGER.error("Annulation impossible ! id=" + id, vEx);
+            // ...
+        }
 
     }
 

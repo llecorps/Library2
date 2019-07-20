@@ -43,6 +43,36 @@ public interface BiblioService {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getPosition", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetPosition")
+    @ResponseWrapper(localName = "getPositionResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetPositionResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getPositionRequest", output = "http://service.biblio.lle.org/BiblioService/getPositionResponse")
+    public int getPosition(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<org.lle.biblio.webapp.generated.Booking>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getListReservation", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetListReservation")
+    @ResponseWrapper(localName = "getListReservationResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetListReservationResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getListReservationRequest", output = "http://service.biblio.lle.org/BiblioService/getListReservationResponse")
+    public List<Booking> getListReservation(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
      * @param arg1
      * @param arg0
      * @return
@@ -91,36 +121,6 @@ public interface BiblioService {
 
     /**
      * 
-     * @param arg0
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getExemplaire", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetExemplaire")
-    @ResponseWrapper(localName = "getExemplaireResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetExemplaireResponse")
-    @Action(input = "http://service.biblio.lle.org/BiblioService/getExemplaireRequest", output = "http://service.biblio.lle.org/BiblioService/getExemplaireResponse")
-    public int getExemplaire(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns org.lle.biblio.webapp.generated.Livre
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getLivre", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetLivre")
-    @ResponseWrapper(localName = "getLivreResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetLivreResponse")
-    @Action(input = "http://service.biblio.lle.org/BiblioService/getLivreRequest", output = "http://service.biblio.lle.org/BiblioService/getLivreResponse")
-    public Livre getLivre(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0);
-
-    /**
-     * 
      * @return
      *     returns java.util.List<org.lle.biblio.webapp.generated.Location>
      */
@@ -136,42 +136,12 @@ public interface BiblioService {
      * @param arg0
      */
     @WebMethod
-    @RequestWrapper(localName = "addLocation", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.AddLocation")
-    @ResponseWrapper(localName = "addLocationResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.AddLocationResponse")
-    @Action(input = "http://service.biblio.lle.org/BiblioService/addLocationRequest", output = "http://service.biblio.lle.org/BiblioService/addLocationResponse")
-    public void addLocation(
+    @RequestWrapper(localName = "addBooked", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.AddBooked")
+    @ResponseWrapper(localName = "addBookedResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.AddBookedResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/addBookedRequest", output = "http://service.biblio.lle.org/BiblioService/addBookedResponse")
+    public void addBooked(
         @WebParam(name = "arg0", targetNamespace = "")
-        Location arg0);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "addProlo", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.AddProlo")
-    @ResponseWrapper(localName = "addProloResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.AddProloResponse")
-    @Action(input = "http://service.biblio.lle.org/BiblioService/addProloRequest", output = "http://service.biblio.lle.org/BiblioService/addProloResponse")
-    public void addProlo(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        int arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns org.lle.biblio.webapp.generated.Utilisateur
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getUtilisateur", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetUtilisateur")
-    @ResponseWrapper(localName = "getUtilisateurResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetUtilisateurResponse")
-    @Action(input = "http://service.biblio.lle.org/BiblioService/getUtilisateurRequest", output = "http://service.biblio.lle.org/BiblioService/getUtilisateurResponse")
-    public Utilisateur getUtilisateur(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0);
+        Booking arg0);
 
     /**
      * 
@@ -197,14 +167,53 @@ public interface BiblioService {
      * 
      * @param arg0
      * @return
-     *     returns org.lle.biblio.webapp.generated.Auteur
+     *     returns int
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getAuteur", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetAuteur")
-    @ResponseWrapper(localName = "getAuteurResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetAuteurResponse")
-    @Action(input = "http://service.biblio.lle.org/BiblioService/getAuteurRequest", output = "http://service.biblio.lle.org/BiblioService/getAuteurResponse")
-    public Auteur getAuteur(
+    @RequestWrapper(localName = "getExemplaire", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetExemplaire")
+    @ResponseWrapper(localName = "getExemplaireResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetExemplaireResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getExemplaireRequest", output = "http://service.biblio.lle.org/BiblioService/getExemplaireResponse")
+    public int getExemplaire(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "delBooked", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.DelBooked")
+    @ResponseWrapper(localName = "delBookedResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.DelBookedResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/delBookedRequest", output = "http://service.biblio.lle.org/BiblioService/delBookedResponse")
+    public void delBooked(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "addLocation", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.AddLocation")
+    @ResponseWrapper(localName = "addLocationResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.AddLocationResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/addLocationRequest", output = "http://service.biblio.lle.org/BiblioService/addLocationResponse")
+    public void addLocation(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Location arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns org.lle.biblio.webapp.generated.Utilisateur
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getUtilisateur", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetUtilisateur")
+    @ResponseWrapper(localName = "getUtilisateurResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetUtilisateurResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getUtilisateurRequest", output = "http://service.biblio.lle.org/BiblioService/getUtilisateurResponse")
+    public Utilisateur getUtilisateur(
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0);
 
@@ -224,5 +233,80 @@ public interface BiblioService {
     public List<Livre> doListLivre()
         throws NotFoundException_Exception
     ;
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "addProlo", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.AddProlo")
+    @ResponseWrapper(localName = "addProloResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.AddProloResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/addProloRequest", output = "http://service.biblio.lle.org/BiblioService/addProloResponse")
+    public void addProlo(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns org.lle.biblio.webapp.generated.Livre
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getLivre", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetLivre")
+    @ResponseWrapper(localName = "getLivreResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetLivreResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getLivreRequest", output = "http://service.biblio.lle.org/BiblioService/getLivreResponse")
+    public Livre getLivre(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns org.lle.biblio.webapp.generated.Auteur
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getAuteur", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetAuteur")
+    @ResponseWrapper(localName = "getAuteurResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetAuteurResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getAuteurRequest", output = "http://service.biblio.lle.org/BiblioService/getAuteurResponse")
+    public Auteur getAuteur(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getNbreLocation", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetNbreLocation")
+    @ResponseWrapper(localName = "getNbreLocationResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetNbreLocationResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getNbreLocationRequest", output = "http://service.biblio.lle.org/BiblioService/getNbreLocationResponse")
+    public int getNbreLocation(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getExpiredate", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetExpiredate")
+    @ResponseWrapper(localName = "getExpiredateResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.webapp.generated.GetExpiredateResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getExpiredateRequest", output = "http://service.biblio.lle.org/BiblioService/getExpiredateResponse")
+    public String getExpiredate(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
 
 }

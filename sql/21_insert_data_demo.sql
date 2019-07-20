@@ -54,3 +54,10 @@ INSERT INTO public.location (utilisateur_id, livre_id, expiredate, prolongation)
 
 INSERT INTO public.location (utilisateur_id, livre_id, expiredate, prolongation)
         VALUES (2, 2, '2019-01-05', 'true' );
+
+--- ================================================================================
+--- booking
+--- ================================================================================
+
+INSERT INTO public.booking (user_id, livre_id, bookingdate, position )
+      VALUES ('1', '1','2019-06-23', '1');

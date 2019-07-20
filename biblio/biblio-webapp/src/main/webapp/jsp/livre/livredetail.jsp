@@ -1,4 +1,5 @@
 
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
@@ -30,9 +31,7 @@
                 <li><b>Nombre d'exemplaires:&nbsp</b><s:property value="livre.exemplaire" /></li>
             </ul>
 
-
-
-            <s:a action="emprunt" class="btn btn-outline-success">Emprunt
+            <s:a action="dispo" class="btn btn-outline-info">Voir Disponibilit&eacute;
               <s:param name="id" value="livre.id" />
             </s:a>
 

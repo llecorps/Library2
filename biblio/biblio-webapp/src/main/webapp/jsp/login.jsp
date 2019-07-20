@@ -17,8 +17,7 @@
 
     <div class="row">
 
-    <h2><s:text name="title.login" /></h2><br>
-
+    <h3><s:text name="title.login" /></h3><br>
 
     <s:if test="#session.utilisateur">&nbsp
 
@@ -53,6 +52,23 @@
             </s:else>
         </li>
         </s:iterator>
+            <h3><s:text name="nav.resa" /></h3>&nbsp
+            <s:iterator value="listResa">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                    Nom:&nbsp<s:property value="nom"/>
+                    Titre:&nbsp<s:property value="titre"/>
+                    Description:&nbsp<s:property value="description"/>
+                    Genre:&nbsp<s:property value="genre"/>
+                    <span class="badge badge-light">
+                    Postion d'attente:&nbsp<s:property value="vPosition"/>
+                    Date Retour:&nbsp<s:property value="dateRetour"/>
+                    </span>
+                    <s:a action="cancelBook" class="btn btn-outline-warning">Annulation
+                        <s:param name="Resaid" value="Resaid" />
+                    </s:a>
+                </li>
+            </s:iterator>
         </ul>
 
 </div>

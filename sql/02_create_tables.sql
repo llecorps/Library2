@@ -80,3 +80,31 @@ REFERENCES public.Auteur (genre)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
+
+CREATE SEQUENCE public.booking_id_seq;
+
+CREATE TABLE public.booking (
+                id INTEGER NOT NULL DEFAULT nextval('public.booking_id_seq'),
+                user_id INTEGER NOT NULL,
+                livre_id INTEGER NOT NULL,
+                bookingdate DATE NOT NULL,
+                position INTEGER NOT NULL,
+                CONSTRAINT booking_pk PRIMARY KEY (id)
+);
+
+ALTER SEQUENCE public.booking_id_seq OWNED BY public.booking.id;
+
+
+ALTER TABLE public.booking ADD CONSTRAINT fk_user_id
+FOREIGN KEY (user_id)
+REFERENCES public.Utilisateur (id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.booking ADD CONSTRAINT fk_livre_id
+FOREIGN KEY (livre_id)
+REFERENCES public.Livre (id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;

@@ -62,6 +62,33 @@
         <module>biblio-service</module>
     </modules>
 
+    <!-- =============================================================== -->
+    <!-- Profiles -->
+    <!-- =============================================================== -->
+    <profiles>
+
+        <!-- Profile utilisé pour lancer les tests d'intégration de la couche Business -->
+        <profile>
+            <id>test-business</id>
+        </profile>
+
+    </profiles>
+
+
+    <!-- =============================================================== -->
+    <!-- Repositories -->
+    <!-- =============================================================== -->
+    <repositories>
+        <!-- ===== Project local repository ===== -->
+        <repository>
+            <id>project.local</id>
+            <name>project.local</name>
+            <url>file://${basedir}/../src/lib/</url>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+    </repositories>
 
     <!-- =============================================================== -->
     <!-- Gestion des dépendances -->
@@ -271,6 +298,29 @@
                         <locales>fr</locales>
                     </configuration>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.0</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>3.4.0.905</version>
+                </plugin>
+                <!-- ===== code cov ===== -->
+                <plugin>
+                    <groupId>org.eluder.coveralls</groupId>
+                    <artifactId>coveralls-maven-plugin</artifactId>
+                    <configuration>
+                        <repoToken>TpOLzUt3gTpY4pIZuojoI6XWdT0ZUSVot</repoToken>
+                    </configuration>
+                    <version>4.3.0</version>
+                </plugin>
+
+
             </plugins>
         </pluginManagement>
     </build>

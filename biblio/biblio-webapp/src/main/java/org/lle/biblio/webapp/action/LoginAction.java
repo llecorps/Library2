@@ -7,6 +7,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.lle.biblio.business.contract.ManagerFactory;
 import org.lle.biblio.model.bean.emprunt.Emprunt;
+//import org.lle.biblio.model.bean.livre.Booking;
 import org.lle.biblio.webapp.generated.*;
 
 import javax.inject.Inject;
@@ -34,6 +35,44 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
     private String password;
     private List<Location> listLocation;
     private List<Emprunt> listEmprunt;
+    private List<Booking> listBooking;
+    private List<Emprunt> listResa;
+    private Integer Resaid;
+    private int vPosition;
+    private String dateRetour;
+    private Location vLocation;
+
+    public Location getvLocation() {
+        return vLocation;
+    }
+
+    public void setvLocation(Location vLocation) {
+        this.vLocation = vLocation;
+    }
+
+    public String getDateRetour() {
+        return dateRetour;
+    }
+
+    public void setDateRetour(String dateRetour) {
+        this.dateRetour = dateRetour;
+    }
+
+    public int getvPosition() {
+        return vPosition;
+    }
+
+    public void setvPosition(int vPosition) {
+        this.vPosition = vPosition;
+    }
+
+    public Integer getResaid() {
+        return Resaid;
+    }
+
+    public void setResaid(Integer resaid) {
+        Resaid = resaid;
+    }
 
     public String getProlongation() {
         return prolongation;
@@ -124,6 +163,23 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
     public void setListEmprunt(List<Emprunt> listEmprunt) {
         this.listEmprunt = listEmprunt;
     }
+
+    public List<Booking> getListBooking() {
+        return listBooking;
+    }
+
+    public void setListBooking(List<Booking> listBooking) {
+        this.listBooking = listBooking;
+    }
+
+    public List<Emprunt> getListResa() {
+        return listResa;
+    }
+
+    public void setListResa(List<Emprunt> listResa) {
+        this.listResa = listResa;
+    }
+
     // ==================== Méthodes ====================
         /**
          * Action permettant la connexion d'un utilisateur
@@ -168,6 +224,36 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
                         }
 
                         listEmprunt.add(vEmprunt);
+
+                    }
+
+                    //listbooked
+
+                   listBooking = pBiblioService.getListReservation(utilisateur.getId());
+                    listResa = new ArrayList<Emprunt>();
+
+                    for (Booking book : listBooking){
+
+                        Emprunt vEmprunt = new Emprunt();
+
+                        Resaid = book.getId();
+
+                        vPosition=book.getPosition();
+
+                        vLocation=pBiblioService.getLivrelocation(book.getLivreId());
+                        dateRetour = vLocation.getExpiredate();
+
+                        livre = pBiblioService.getLivre(book.getLivreId());
+                        auteur = pBiblioService.getAuteur(livre.getAuteurId());
+
+                        vEmprunt.setTitre(livre.getTitre());
+                        vEmprunt.setDescription(livre.getDescription());
+                        vEmprunt.setGenre(livre.getGenre());
+                        vEmprunt.setNom(auteur.getNom());
+                        vEmprunt.setId(livre.getId());
+
+
+                        listResa.add(vEmprunt);
 
                     }
 

@@ -1,5 +1,6 @@
 package org.lle.biblio.service;
 
+import org.lle.biblio.model.bean.livre.Booking;
 import org.lle.biblio.model.bean.location.Location;
 
 import java.util.List;
@@ -48,6 +49,14 @@ public class LocationServiceImpl extends AbstractService{
         return vListLocation;
     }
 
+    public List<Booking> getListReservation(int id){
+
+        List<Booking> vListReservation = getManagerFactory().getLocationManager().getListReservation(id);
+
+        return vListReservation;
+    }
+
+
     public List<Location> listLocation(){
 
         List<Location> vListLocation = getManagerFactory().getLocationManager().listLocation();
@@ -55,9 +64,39 @@ public class LocationServiceImpl extends AbstractService{
         return vListLocation;
     }
 
+    public int getNbreLocation(int id){
+
+        int vNbreLocation = getManagerFactory().getLocationManager().getNbreLocation(id);
+
+        return vNbreLocation;
+    }
+
+    public int getPosition(int id){
+
+        int vPosition = getManagerFactory().getLocationManager().getPosition(id);
+
+        return vPosition;
+    }
+    public String getExpiredate(int id){
+
+        String vExpiredate = getManagerFactory().getLocationManager().getExpiredate(id);
+
+        return vExpiredate;
+    }
+
     public void addProlo ( String expiration, int id){
 
         getManagerFactory().getLocationManager().addProlo(expiration,id);
+
+    }
+    public void addBooked (Booking pBooking){
+
+        getManagerFactory().getLocationManager().addBooked(pBooking);
+
+    }
+    public void delBooked (int id){
+
+        getManagerFactory().getLocationManager().delBooked(id);
 
     }
 }

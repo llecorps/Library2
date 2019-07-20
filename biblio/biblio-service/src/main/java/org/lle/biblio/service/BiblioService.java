@@ -1,6 +1,7 @@
 package org.lle.biblio.service;
 
 import org.lle.biblio.model.bean.auteur.Auteur;
+import org.lle.biblio.model.bean.livre.Booking;
 import org.lle.biblio.model.bean.livre.Livre;
 import org.lle.biblio.model.bean.location.Location;
 import org.lle.biblio.model.bean.utilisateur.Utilisateur;
@@ -79,6 +80,50 @@ public class BiblioService extends AbstractService{
     }
 
     @WebMethod
+    public int getNbreLocation( int id){
+
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        int vNbreLocation = vLocationService.getNbreLocation(id);
+
+        return  vNbreLocation;
+    }
+
+    @WebMethod
+    public int getPosition( int id){
+
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        int vPosition = vLocationService.getPosition(id);
+
+        return  vPosition;
+    }
+
+    @WebMethod
+    public String getExpiredate( int id){
+
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        String vExpiredate = vLocationService.getExpiredate(id);
+
+        return  vExpiredate;
+    }
+
+    @WebMethod
+    public List<Booking> getListReservation(int id){
+
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        List<Booking> vListReservation = vLocationService.getListReservation(id);
+
+        return  vListReservation;
+    }
+
+    @WebMethod
     public  List<Location> listLocation( ){
 
 
@@ -107,6 +152,26 @@ public class BiblioService extends AbstractService{
         LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
 
         vLocationService.addEmprunt(pLocation);
+
+    }
+
+    @WebMethod
+    public void addBooked(Booking pBooking){
+
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        vLocationService.addBooked(pBooking);
+
+    }
+
+    @WebMethod
+    public void delBooked(int id){
+
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        vLocationService.delBooked(id);
 
     }
 
