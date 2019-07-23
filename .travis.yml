@@ -1,2 +1,2 @@
 language: java
-script: mvn --batch-mode --file ./src/pom.xml cobertura:cobertura coveralls:report clean test -P test-business
+script: mvn --batch-mode --file ./biblio/pom.xml cobertura:cobertura coveralls:report clean test -P test-business
