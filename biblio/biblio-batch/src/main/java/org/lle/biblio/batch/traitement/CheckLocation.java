@@ -68,7 +68,7 @@ public class CheckLocation extends AbstractTraitement{
                 String subject = "Relance Emprunt";
                 String msg ="Veuillez retourner cet ouvrage:\n"+vLivre.getTitre()+"\n Cordialement";
                 final String from ="laurent.lecorps@gmail.com";
-                final  String password ="Blueparrot01!";
+                final  String password ="";
 
 
                 Properties props = new Properties();
