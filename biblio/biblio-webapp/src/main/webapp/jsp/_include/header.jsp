@@ -17,6 +17,9 @@
             <li class="nav-item active">
                 <s:a action="recherche" class="nav-link"><s:text name="nav.recherche" /></s:a> <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item active">
+                <s:a action="retour" class="nav-link"><s:text name="nav.retour" /></s:a> <span class="sr-only">(current)</span></a>
+            </li>
 
             <li class="nav-item">
 

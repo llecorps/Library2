@@ -35,6 +35,9 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
     @Inject
     private LocationRM locationRM;
 
+    @Inject
+    private BookingRM bookingRM;
+
 
     @Override
     public Location getLocation(int pId) throws NotFoundException {
@@ -184,6 +187,39 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
     }
 
     @Override
+    public void delLoc(Location location){
+
+        BeanPropertySqlParameterSource vParams = new BeanPropertySqlParameterSource(location);
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+
+
+        String vSQL = "delete FROM public.location where utilisateur_id="+location.getUtilisateur_id()+"and livre_id="+location.getLivre_id()+";COMMIT; ";
+
+        try {
+            vJdbcTemplate.update(vSQL, vParams);
+
+        } catch (DuplicateKeyException vEx) {
+            LOGGER.error("Location delete impossible ! id=" + location.getUtilisateur_id(), vEx);
+            // ...
+        }
+
+
+    }
+
+    @Override
+    public Booking userPosition(int pId)  {
+
+        String vSQL = "select * from booking where livre_id="+pId+" order by position asc limit 1;";
+
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        MapSqlParameterSource vParams = new MapSqlParameterSource("livre_id", pId);
+
+        Booking booking = vJdbcTemplate.queryForObject(vSQL, vParams, bookingRM);
+        return booking;
+
+    }
+
+    @Override
     public void addProlo(String expiration, int pId) {
 
         String simpleQuote = "'";
@@ -201,6 +237,26 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
 
 
     }
+
+    @Override
+    public void addNotif(String date, int pId) {
+
+        String simpleQuote = "'";
+        String expireDate = simpleQuote + date + simpleQuote;
+
+        String vSQL = "update booking set notification="+expireDate+" WHERE id="+pId+";COMMIT;";
+
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+        vParams.addValue("notification", date, Types.VARCHAR);
+        vParams.addValue("id", pId, Types.INTEGER);
+
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+
+        vJdbcTemplate.update(vSQL, vParams);
+
+
+    }
+
     @Override
     public void addBooked (Booking pBooking) {
 

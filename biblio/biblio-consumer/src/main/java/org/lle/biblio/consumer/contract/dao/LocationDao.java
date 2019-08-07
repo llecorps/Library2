@@ -36,4 +36,10 @@ public interface LocationDao {
     int getPosition (int id) throws NotFoundException;
 
     String getExpiredate (int id);
+
+    void delLoc(Location location);
+
+    Booking userPosition (int id);
+
+    void addNotif(String date, int pId);
 }

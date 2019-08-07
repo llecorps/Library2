@@ -23,5 +23,8 @@ public interface LocationManager {
     int getNbreLocation (int id);
     int getPosition (int id);
     String getExpiredate (int id);
+    void delLoc(Location location);
+    Booking userPosition (int id);
+    void addNotif(String date, int id);
 
 }

@@ -199,7 +199,11 @@ public class DisplayAction extends ActionSupport implements SessionAware {
                 Resaid = book.getId();
                 vPosition=book.getPosition();
                 vLocation=pBiblioService.getLivrelocation(book.getLivreId());
-                dateRetour = vLocation.getExpiredate();
+                if(vLocation != null) {
+                    dateRetour = vLocation.getExpiredate();
+                }else{
+                    dateRetour = "disponible";
+                }
                 livre = pBiblioService.getLivre(book.getLivreId());
                 auteur = pBiblioService.getAuteur(livre.getAuteurId());
 

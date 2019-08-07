@@ -64,5 +64,22 @@ public class LivreDaoImpl extends AbstractDaoImpl implements LivreDao {
         return vList;
     }
 
+    @Override
+    public Livre getLivreTitre(String chaine) throws NotFoundException {
+
+        String simpleQuote="'";
+        String description = simpleQuote+chaine+simpleQuote;
+
+        String vSQL = "SELECT * FROM livre WHERE description ="+description;
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        MapSqlParameterSource vParams = new MapSqlParameterSource("description", chaine);
+        try {
+            Livre vLivre = vJdbcTemplate.queryForObject(vSQL, vParams, livreRM);
+            return vLivre;
+
+        } catch (IncorrectResultSizeDataAccessException vEx) {
+            throw new NotFoundException("Livre non trouvé desc=" + chaine);
+        }
+    }
 
 }

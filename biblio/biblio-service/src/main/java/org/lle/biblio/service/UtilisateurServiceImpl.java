@@ -13,4 +13,5 @@ public class UtilisateurServiceImpl extends AbstractService {
 
                 return vUtilisateur;
     }
+
 }
