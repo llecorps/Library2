@@ -1,2 +1,3 @@
 language: java
+jre : oraclejdk8
 script: mvn --batch-mode --file ./biblio/pom.xml cobertura:cobertura coveralls:report clean test -P test-business
