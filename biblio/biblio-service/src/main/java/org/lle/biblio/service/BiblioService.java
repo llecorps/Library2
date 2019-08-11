@@ -136,6 +136,17 @@ public class BiblioService extends AbstractService{
     }
 
     @WebMethod
+    public  List<Booking> listBooking( ){
+
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        List<Booking> vListBooking = vLocationService.listBooking();
+
+        return vListBooking;
+    }
+
+    @WebMethod
     public void addProlo( String expiration,int id){
 
 
@@ -270,7 +281,7 @@ public class BiblioService extends AbstractService{
     }
 
     @WebMethod
-    public Booking userPosition(int id) {
+    public Booking userPosition(int id) throws NotFoundException {
 
         LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
 

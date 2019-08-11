@@ -3,6 +3,7 @@ package org.lle.biblio.service;
 import org.lle.biblio.model.bean.livre.Booking;
 import org.lle.biblio.model.bean.location.Location;
 import org.lle.biblio.model.bean.utilisateur.Utilisateur;
+import org.lle.biblio.model.exception.NotFoundException;
 
 import java.util.List;
 
@@ -83,6 +84,13 @@ public class LocationServiceImpl extends AbstractService{
         return vListLocation;
     }
 
+    public List<Booking> listBooking(){
+
+        List<Booking> vListBooking = getManagerFactory().getLocationManager().listBooking();
+
+        return vListBooking;
+    }
+
     public int getNbreLocation(int id){
 
         int vNbreLocation = getManagerFactory().getLocationManager().getNbreLocation(id);
@@ -121,22 +129,11 @@ public class LocationServiceImpl extends AbstractService{
     }
     public void delLoc (Location location){
 
-        // Annulation Location
          getManagerFactory().getLocationManager().delLoc(location);
-        //user_id
-        // booking = getManagerFactory().getLocationManager().userPosition(location.getLivre_id());
-        //mail
-        // user = getManagerFactory().getUtilisateurManager().getUtilisateur(booking.getUser_id());
-        // Calcul date
-        // Calendar toDay = Calendar.getInstance();
-        // Date date = toDay.getTime();
-        // SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
-        // String dateNotif = formatter.format(date);
-        //Update DateNotif
-        // getManagerFactory().getLocationManager().addNotif(dateNotif,booking.getId());
+
     }
 
-    public Booking userPosition(int id) {
+    public Booking userPosition(int id) throws NotFoundException {
 
         booking = getManagerFactory().getLocationManager().userPosition(id);
 

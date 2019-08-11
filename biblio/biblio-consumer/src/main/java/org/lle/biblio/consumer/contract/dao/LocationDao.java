@@ -23,6 +23,8 @@ public interface LocationDao {
 
     List<Location> listLocation();
 
+    List<Booking> listBooking();
+
     List<Booking> getListReservation(int id);
 
     void addProlo(String expiration, int id);
@@ -39,7 +41,7 @@ public interface LocationDao {
 
     void delLoc(Location location);
 
-    Booking userPosition (int id);
+    Booking userPosition (int id) throws NotFoundException;
 
     void addNotif(String date, int pId);
 }

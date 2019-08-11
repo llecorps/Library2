@@ -305,13 +305,14 @@ public class LivreAction extends ActionSupport implements SessionAware {
 
 
             if(autho) {
-
+/*
                 //bookingate
                 Calendar now = Calendar.getInstance();
                 Date date = now.getTime();
                 SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
                 String bookingdate = formatter.format(date);
-
+*/
+                String bookingdate = pBiblioService.getExpiredate(id);
                 //position
                 int vLastPos = pBiblioService.getPosition(id);
                 int vPosition = vLastPos+1;

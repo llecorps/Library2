@@ -44,9 +44,11 @@ public class ObjectFactory {
     private final static QName _GetExpiredate_QNAME = new QName("http://service.biblio.lle.org/", "getExpiredate");
     private final static QName _AddBookedResponse_QNAME = new QName("http://service.biblio.lle.org/", "addBookedResponse");
     private final static QName _UserPosition_QNAME = new QName("http://service.biblio.lle.org/", "userPosition");
+    private final static QName _ListBookingResponse_QNAME = new QName("http://service.biblio.lle.org/", "listBookingResponse");
     private final static QName _DelLoc_QNAME = new QName("http://service.biblio.lle.org/", "delLoc");
     private final static QName _GetUtilisateurResponse_QNAME = new QName("http://service.biblio.lle.org/", "getUtilisateurResponse");
     private final static QName _AddNotifResponse_QNAME = new QName("http://service.biblio.lle.org/", "addNotifResponse");
+    private final static QName _ListBooking_QNAME = new QName("http://service.biblio.lle.org/", "listBooking");
     private final static QName _GetLivrelocationResponse_QNAME = new QName("http://service.biblio.lle.org/", "getLivrelocationResponse");
     private final static QName _GetUtilisateur_QNAME = new QName("http://service.biblio.lle.org/", "getUtilisateur");
     private final static QName _DoListLivre_QNAME = new QName("http://service.biblio.lle.org/", "DoListLivre");
@@ -258,6 +260,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListBooking }
+     * 
+     */
+    public ListBooking createListBooking() {
+        return new ListBooking();
+    }
+
+    /**
      * Create an instance of {@link GetListLocation }
      * 
      */
@@ -418,6 +428,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListBookingResponse }
+     * 
+     */
+    public ListBookingResponse createListBookingResponse() {
+        return new ListBookingResponse();
+    }
+
+    /**
      * Create an instance of {@link AddNotif }
      * 
      */
@@ -490,19 +508,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Livre }
-     * 
-     */
-    public Livre createLivre() {
-        return new Livre();
-    }
-
-    /**
      * Create an instance of {@link Auteur }
      * 
      */
     public Auteur createAuteur() {
         return new Auteur();
+    }
+
+    /**
+     * Create an instance of {@link Livre }
+     * 
+     */
+    public Livre createLivre() {
+        return new Livre();
     }
 
     /**
@@ -694,6 +712,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListBookingResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "listBookingResponse")
+    public JAXBElement<ListBookingResponse> createListBookingResponse(ListBookingResponse value) {
+        return new JAXBElement<ListBookingResponse>(_ListBookingResponse_QNAME, ListBookingResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DelLoc }{@code >}}
      * 
      */
@@ -718,6 +745,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "addNotifResponse")
     public JAXBElement<AddNotifResponse> createAddNotifResponse(AddNotifResponse value) {
         return new JAXBElement<AddNotifResponse>(_AddNotifResponse_QNAME, AddNotifResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListBooking }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "listBooking")
+    public JAXBElement<ListBooking> createListBooking(ListBooking value) {
+        return new JAXBElement<ListBooking>(_ListBooking_QNAME, ListBooking.class, null, value);
     }
 
     /**

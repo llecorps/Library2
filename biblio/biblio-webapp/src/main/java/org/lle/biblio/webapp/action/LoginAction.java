@@ -240,16 +240,17 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
 
                         vPosition=book.getPosition();
 
-                        vLocation=pBiblioService.getLivrelocation(book.getLivreId());
+                        //vLocation=pBiblioService.getLivrelocation(book.getLivreId());
+/*
                         if(vLocation != null) {
                             dateRetour = vLocation.getExpiredate();
                         }else{
                             dateRetour = "disponible";
                         }
-
+*/
                         livre = pBiblioService.getLivre(book.getLivreId());
                         auteur = pBiblioService.getAuteur(livre.getAuteurId());
-
+                        dateRetour= book.getBookingdate();
                         vEmprunt.setTitre(livre.getTitre());
                         vEmprunt.setDescription(livre.getDescription());
                         vEmprunt.setGenre(livre.getGenre());

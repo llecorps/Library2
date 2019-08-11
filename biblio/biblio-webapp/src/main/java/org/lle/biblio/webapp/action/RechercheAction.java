@@ -138,9 +138,8 @@ public class RechercheAction extends ActionSupport implements SessionAware {
 
         String vResult = ActionSupport.INPUT;
 
-            BiblioService_Service pBiblio = new BiblioService_Service();
-
-            BiblioService pBiblioService = pBiblio.getBiblioServicePort();
+        BiblioService_Service pBiblio = new BiblioService_Service();
+        BiblioService pBiblioService = pBiblio.getBiblioServicePort();
 
         //user_id
         Utilisateur vUser = (Utilisateur) this.session.get("utilisateur");
@@ -154,18 +153,25 @@ public class RechercheAction extends ActionSupport implements SessionAware {
 
         if (this.livre != null) {
 
-            Livre vLivre = pBiblioService.getLivreTitre(livre.getDescription());
+            Livre vLivre = pBiblioService.getLivreTitre(livre.getTitre());
+            String chaine = livre.getTitre();
             //user_position
-            booking = pBiblioService.userPosition(vLivre.getId());
+            try {
+                booking = pBiblioService.userPosition(vLivre.getId());
+            } catch (NotFoundException_Exception e) {
+                e.printStackTrace();
+            }
             //mail
-            user = pBiblioService.getUtilisateur(booking.getUserId());
-            // Calcul date
-            Calendar toDay = Calendar.getInstance();
-            Date date = toDay.getTime();
-            SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
-            String dateNotif = formatter.format(date);
-            //Update DateNotif
-            pBiblioService.addNotif(dateNotif, booking.getId());
+            if(booking!=null) {
+                user = pBiblioService.getUtilisateur(booking.getUserId());
+                // Calcul date
+                Calendar toDay = Calendar.getInstance();
+                Date date = toDay.getTime();
+                SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
+                String dateNotif = formatter.format(date);
+                //Update DateNotif
+                pBiblioService.addNotif(dateNotif, booking.getId());
+            }
 
             for (Location loc : listLocation){
 
@@ -173,12 +179,8 @@ public class RechercheAction extends ActionSupport implements SessionAware {
                     pBiblioService.delLoc(loc);
                     vResult = ActionSupport.SUCCESS;
                 }
-
             }
-
         }
-
-
         if (vResult.equals(ActionSupport.INPUT)) {
 
             listEmprunt = new ArrayList<Emprunt>();
