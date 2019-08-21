@@ -3,7 +3,7 @@ package org.lle.biblio.batch;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.lle.biblio.batch.traitement.CheckLocation;
+import org.lle.biblio.batch.traitement.CheckNotification;
 import org.lle.biblio.model.exception.TechnicalException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -36,10 +36,13 @@ public class Main {
             }
 
             String vTraitementId = pArgs[0];
-            if ("CheckLocation".equals(vTraitementId)) {
-                LOGGER.info("Execution du traitement : CheckLocation");
 
-                CheckLocation vTraitement  = vApplicationContext.getBean("CheckLocation", CheckLocation.class);
+            //if ("CheckLocation".equals(vTraitementId)) {
+            if ("CheckNotification".equals(vTraitementId)) {
+                LOGGER.info("Execution du traitement Batch");
+
+                //CheckLocation vTraitement  = vApplicationContext.getBean("CheckLocation", CheckLocation.class);
+                CheckNotification vTraitement  = vApplicationContext.getBean("CheckNotification", CheckNotification.class);
                 vTraitement.run();
             } else {
                 throw new TechnicalException("Traitement inconnu : " + vTraitementId);

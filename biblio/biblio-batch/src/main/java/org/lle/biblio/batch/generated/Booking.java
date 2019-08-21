@@ -1,5 +1,5 @@
 
-package org.lle.biblio.webapp.generated;
+package org.lle.biblio.batch.generated;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

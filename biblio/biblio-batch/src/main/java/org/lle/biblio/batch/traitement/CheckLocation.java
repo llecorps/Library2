@@ -6,7 +6,6 @@ import org.lle.biblio.batch.generated.*;
 import org.lle.biblio.model.exception.TechnicalException;
 
 import javax.mail.*;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.text.ParseException;
@@ -67,7 +66,7 @@ public class CheckLocation extends AbstractTraitement{
                 String to = mail;
                 String subject = "Relance Emprunt";
                 String msg ="Veuillez retourner cet ouvrage:\n"+vLivre.getTitre()+"\n Cordialement";
-                final String from ="laurent.lecorps@gmail.com";
+                final String from ="XXX@gmail.com";
                 final  String password ="";
 
 
@@ -92,51 +91,19 @@ public class CheckLocation extends AbstractTraitement{
                 InternetAddress addressFrom = null;
                 try {
                     addressFrom = new InternetAddress(from);
-                } catch (AddressException e) {
-                    e.printStackTrace();
-                }
-
-                MimeMessage message = new MimeMessage(session);
-                try {
+                    MimeMessage message = new MimeMessage(session);
                     message.setSender(addressFrom);
-                } catch (MessagingException e) {
-                    e.printStackTrace();
-                }
-                try {
                     message.setSubject(subject);
-                } catch (MessagingException e) {
-                    e.printStackTrace();
-                }
-                try {
                     message.setContent(msg, "text/plain");
-                } catch (MessagingException e) {
-                    e.printStackTrace();
-                }
-                try {
                     message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-                } catch (MessagingException e) {
-                    e.printStackTrace();
-                }
-
-                try {
                     transport.connect();
-                } catch (MessagingException e) {
-                    e.printStackTrace();
-                }
-                try {
                     Transport.send(message);
-                } catch (MessagingException e) {
-                    e.printStackTrace();
-                }
-                try {
                     transport.close();
                 } catch (MessagingException e) {
                     e.printStackTrace();
                 }
 
-
             }else {
-
                 System.out.println("Date Location est valide:" + dateLocation);
 
             }
