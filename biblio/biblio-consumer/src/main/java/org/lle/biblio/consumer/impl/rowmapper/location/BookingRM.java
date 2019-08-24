@@ -22,6 +22,7 @@ public class BookingRM implements RowMapper<Booking> {
         vBooking.setLivre_id(pRS.getInt("livre_id"));
         vBooking.setBookingdate(pRS.getString("bookingdate"));
         vBooking.setPosition(pRS.getInt("position"));
+        vBooking.setNotification(pRS.getString("notification"));
 
         return vBooking;
     }

@@ -66,6 +66,12 @@ public class LocationManagerImpl extends AbstractManager implements LocationMana
         getDaoFactory().getLocationDao().addProlo(expiration,id);
 
     }
+    @Override
+    public void addNotif(String date, int id) {
+
+        getDaoFactory().getLocationDao().addNotif(date, id);
+
+    }
 
     @Override
     public List<Location> getListLocation(int id) {
@@ -108,6 +114,13 @@ public class LocationManagerImpl extends AbstractManager implements LocationMana
     }
 
     @Override
+    public void delLoc(Location location) {
+
+        getDaoFactory().getLocationDao().delLoc(location);
+
+    }
+
+    @Override
     public List<Booking> getListReservation(int id) {
 
         List<Booking> vListReservation = getDaoFactory().getLocationDao().getListReservation(id);
@@ -122,6 +135,12 @@ public class LocationManagerImpl extends AbstractManager implements LocationMana
         return vListLocation;
     }
     @Override
+    public List<Booking> listBooking() {
+        List<Booking> vListBooking = getDaoFactory().getLocationDao().listBooking();
+
+        return vListBooking;
+    }
+    @Override
     public void addBooked (Booking pBooking) {
 
         getDaoFactory().getLocationDao().addBooked(pBooking);
@@ -132,5 +151,13 @@ public class LocationManagerImpl extends AbstractManager implements LocationMana
     public void delBooked(int id) {
 
         getDaoFactory().getLocationDao().delBooked(id);
+    }
+
+    @Override
+    public Booking userPosition(int id) throws NotFoundException {
+
+        Booking booking = getDaoFactory().getLocationDao().userPosition(id);
+
+        return booking;
     }
 }

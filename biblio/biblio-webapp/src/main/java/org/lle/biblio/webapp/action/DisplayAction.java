@@ -28,14 +28,14 @@ public class DisplayAction extends ActionSupport implements SessionAware {
     private List<Emprunt> listResa;
     private int vPosition;
     private String dateRetour;
-    private Location vLocation;
+    private Location location;
 
-    public Location getvLocation() {
-        return vLocation;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setvLocation(Location vLocation) {
-        this.vLocation = vLocation;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public String getDateRetour() {
@@ -198,8 +198,15 @@ public class DisplayAction extends ActionSupport implements SessionAware {
 
                 Resaid = book.getId();
                 vPosition=book.getPosition();
-                vLocation=pBiblioService.getLivrelocation(book.getLivreId());
-                dateRetour = vLocation.getExpiredate();
+                /*
+                location=pBiblioService.getLivrelocation(book.getLivreId());
+
+                if(location != null) {
+                    dateRetour = location.getExpiredate();
+                }else{
+                    dateRetour = "disponible";
+                }*/
+                dateRetour= book.getBookingdate();
                 livre = pBiblioService.getLivre(book.getLivreId());
                 auteur = pBiblioService.getAuteur(livre.getAuteurId());
 

@@ -29,6 +29,18 @@ public class LivreManagerImpl extends AbstractManager implements LivreManager {
     }
 
     @Override
+    public Livre getLivreTitre(String chaine) {
+
+        try {
+            vLivre = getDaoFactory().getLivreDao().getLivreTitre(chaine);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return vLivre;
+    }
+
+    @Override
     public List<Livre> getListLivre() throws NotFoundException {
         vListLivre = getDaoFactory().getLivreDao().getListLivre();
 

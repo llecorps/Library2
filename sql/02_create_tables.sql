@@ -89,6 +89,7 @@ CREATE TABLE public.booking (
                 livre_id INTEGER NOT NULL,
                 bookingdate DATE NOT NULL,
                 position INTEGER NOT NULL,
+                notification DATE,
                 CONSTRAINT booking_pk PRIMARY KEY (id)
 );
 

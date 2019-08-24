@@ -10,16 +10,26 @@ public class Booking {
     private int livre_id;
     private String bookingdate;
     private int position;
+    private String notification;
 
     public Booking() {
     }
 
-    public Booking(int id, int user_id, int livre_id, String bookingdate, int position) {
+    public Booking(int id, int user_id, int livre_id, String bookingdate, int position, String notification) {
         this.id = id;
         this.user_id = user_id;
         this.livre_id = livre_id;
         this.bookingdate = bookingdate;
         this.position = position;
+        this.notification = notification;
+    }
+
+    public String getNotification() {
+        return notification;
+    }
+
+    public void setNotification(String notification) {
+        this.notification = notification;
     }
 
     public int getId() {
@@ -70,6 +80,7 @@ public class Booking {
                 ", livre_id=" + livre_id +
                 ", bookingdate='" + bookingdate + '\'' +
                 ", position=" + position +
+                ", notification='" + notification + '\'' +
                 '}';
     }
 }

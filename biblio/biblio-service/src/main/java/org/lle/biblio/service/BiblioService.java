@@ -101,6 +101,7 @@ public class BiblioService extends AbstractService{
         return  vPosition;
     }
 
+
     @WebMethod
     public String getExpiredate( int id){
 
@@ -132,6 +133,17 @@ public class BiblioService extends AbstractService{
         List<Location> vListLocation = vLocationService.listLocation();
 
        return vListLocation;
+    }
+
+    @WebMethod
+    public  List<Booking> listBooking( ){
+
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        List<Booking> vListBooking = vLocationService.listBooking();
+
+        return vListBooking;
     }
 
     @WebMethod
@@ -199,6 +211,18 @@ public class BiblioService extends AbstractService{
     }
 
     @WebMethod
+    public Livre getLivreTitre(String chaine){
+
+
+        LivreServiceImpl vLivreService = vApplicationContext.getBean("LivreServiceImpl", LivreServiceImpl.class);
+
+        Livre vLivre = vLivreService.getLivreTitre(chaine);
+
+        return vLivre;
+
+    }
+
+    @WebMethod
     public Auteur getAuteur(int id){
 
 
@@ -245,4 +269,45 @@ public class BiblioService extends AbstractService{
         return vListLivre;
 
     }
+
+    @WebMethod
+    public void delLoc(Location location){
+
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        vLocationService.delLoc(location);
+
+    }
+
+    @WebMethod
+    public Booking userPosition(int id) throws NotFoundException {
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        Booking booking = vLocationService.userPosition(id);
+
+        return booking;
+    }
+
+    @WebMethod
+    public Utilisateur getUser(int id) {
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        Utilisateur user = vLocationService.getUtilisateur(id);
+
+        return user;
+
+    }
+
+    @WebMethod
+    public void addNotif(String date, int id) {
+
+        LocationServiceImpl vLocationService = vApplicationContext.getBean("LocationServiceImpl", LocationServiceImpl.class);
+
+        vLocationService.addNotif(date , id);
+
+    }
+
 }

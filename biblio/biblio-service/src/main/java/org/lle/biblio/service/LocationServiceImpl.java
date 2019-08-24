@@ -2,6 +2,8 @@ package org.lle.biblio.service;
 
 import org.lle.biblio.model.bean.livre.Booking;
 import org.lle.biblio.model.bean.location.Location;
+import org.lle.biblio.model.bean.utilisateur.Utilisateur;
+import org.lle.biblio.model.exception.NotFoundException;
 
 import java.util.List;
 
@@ -11,6 +13,24 @@ import java.util.List;
 public class LocationServiceImpl extends AbstractService{
 
     private int id;
+    private Utilisateur user;
+    private Booking booking;
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
+
+    public Utilisateur getUser() {
+        return user;
+    }
+
+    public void setUser(Utilisateur user) {
+        this.user = user;
+    }
 
     public int getId() {
         return id;
@@ -64,6 +84,13 @@ public class LocationServiceImpl extends AbstractService{
         return vListLocation;
     }
 
+    public List<Booking> listBooking(){
+
+        List<Booking> vListBooking = getManagerFactory().getLocationManager().listBooking();
+
+        return vListBooking;
+    }
+
     public int getNbreLocation(int id){
 
         int vNbreLocation = getManagerFactory().getLocationManager().getNbreLocation(id);
@@ -77,6 +104,7 @@ public class LocationServiceImpl extends AbstractService{
 
         return vPosition;
     }
+
     public String getExpiredate(int id){
 
         String vExpiredate = getManagerFactory().getLocationManager().getExpiredate(id);
@@ -97,6 +125,31 @@ public class LocationServiceImpl extends AbstractService{
     public void delBooked (int id){
 
         getManagerFactory().getLocationManager().delBooked(id);
+
+    }
+    public void delLoc (Location location){
+
+         getManagerFactory().getLocationManager().delLoc(location);
+
+    }
+
+    public Booking userPosition(int id) throws NotFoundException {
+
+        booking = getManagerFactory().getLocationManager().userPosition(id);
+
+        return booking;
+    }
+
+    public Utilisateur getUtilisateur(int id) {
+
+            user = getManagerFactory().getUtilisateurManager().getUtilisateur(id);
+
+        return user;
+
+    }
+    public void addNotif(String date, int id) {
+
+        getManagerFactory().getLocationManager().addNotif(date , id);
 
     }
 }

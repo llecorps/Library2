@@ -53,7 +53,7 @@
 
     <!-- ===== Package pour les actions publiques ===== -->
     <package name="public" extends="base">
-
+    <!--package name="default" namespace="/" extends="struts-default"-->
         <!-- Action par défaut -->
         <default-action-ref name="login" />
 
@@ -81,8 +81,23 @@
             <result name="input">/jsp/recherche/search.jsp</result>
             <result name="error">/jsp/error.jsp</result>
             <result name="success">/jsp/recherche/result.jsp</result>
+        </action>
+
+        <action name="retour" class="org.lle.biblio.webapp.action.RechercheAction" method="doBack">
+            <result name="input">/jsp/recherche/retour.jsp</result>
+
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="authenticatedStack" />
+
+            <result name="error">/jsp/error.jsp</result>
+            <result name="success" type="redirectAction">display</result>
 
         </action>
+
+
 
         <action name="livre_detail"
                 class="org.lle.biblio.webapp.action.LivreAction"
