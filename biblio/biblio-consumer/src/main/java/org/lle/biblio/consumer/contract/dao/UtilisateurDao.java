@@ -13,4 +13,8 @@ public interface UtilisateurDao {
     Utilisateur getUtilisateur(String login, String password ) throws NotFoundException;
 
     Utilisateur getUtilisateur(Integer pId ) throws NotFoundException;
+
+    void delRecall(int id);
+    void addRecall(int id);
+    boolean getRecall( int id);
 }

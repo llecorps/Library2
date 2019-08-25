@@ -14,4 +14,20 @@ public class UtilisateurServiceImpl extends AbstractService {
                 return vUtilisateur;
     }
 
+    public void delRecall(int id) {
+
+        getManagerFactory().getUtilisateurManager().delRecall(id);
+    }
+
+    public void addRecall(int id) {
+
+        getManagerFactory().getUtilisateurManager().addRecall(id);
+    }
+
+    public boolean getRecall(int id) {
+
+        boolean vRecall = getManagerFactory().getUtilisateurManager().getRecall(id);
+
+        return vRecall;
+    }
 }

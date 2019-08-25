@@ -27,6 +27,24 @@
                     <li class="list-group-item">Email : <s:property value="utilisateur.email" /></li>
                     <li class="list-group-item">Adress : <s:property value="utilisateur.adress" /></li>
                     <li class="list-group-item">Phone : <s:property value="utilisateur.phone" /></li>
+                    <li class="list-group-item">
+
+                        <s:if test="activation=='true'">
+
+                            Rappel Auto :
+
+                            <s:a action="desactivation" class="btn btn-outline-info">Désactiver
+                                <s:param name="id" value="utilisateur.id" />
+                            </s:a>
+                        </s:if>
+                        <s:else>
+
+                            Rappel Auto :
+                            <s:a action="activation" class="btn btn-outline-info">Activer
+                                <s:param name="id" value="utilisateur.id" />
+                            </s:a>
+                        </s:else>
+                    </li>
                 </ul>
             </div>
 

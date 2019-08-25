@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.sql.Types;
 
 
 @Named
@@ -30,6 +31,49 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl implements UtilisateurDa
         } catch (IncorrectResultSizeDataAccessException vEx) {
             throw new NotFoundException("Utilisateur non trouvé. id=" + pId);
         }
+    }
+
+    @Override
+    public void delRecall(int id) {
+
+        String vSQL = "update utilisateur set recall=FALSE WHERE id="+id+";COMMIT;";
+
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+
+        vParams.addValue("id", id, Types.INTEGER);
+
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+
+        vJdbcTemplate.update(vSQL, vParams);
+
+    }
+
+    @Override
+    public void addRecall(int id) {
+
+        String vSQL = "update utilisateur set recall=TRUE WHERE id="+id+";COMMIT;";
+
+        MapSqlParameterSource vParams = new MapSqlParameterSource();
+
+        vParams.addValue("id", id, Types.INTEGER);
+
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+
+        vJdbcTemplate.update(vSQL, vParams);
+
+    }
+
+    @Override
+    public boolean getRecall(int id) {
+
+        String vSQL = "SELECT recall FROM utilisateur WHERE id = "+id;
+
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        MapSqlParameterSource vParams = new MapSqlParameterSource("id", id);
+
+        boolean vRecall = vJdbcTemplate.queryForObject(vSQL, vParams, boolean.class);
+
+        return vRecall;
     }
 
     @Override

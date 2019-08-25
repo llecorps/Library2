@@ -20,6 +20,7 @@ public class UtilisateurRM implements RowMapper<Utilisateur> {
         vUtilisateur.setPassword(pRS.getString("password"));
         vUtilisateur.setAdress(pRS.getString("adress"));
         vUtilisateur.setPhone(pRS.getString("phone"));
+        vUtilisateur.setRecall(pRS.getBoolean("recall"));
 
         return  vUtilisateur;
     }

@@ -25,7 +25,9 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _AddNotif_QNAME = new QName("http://service.biblio.lle.org/", "addNotif");
+    private final static QName _AddRecall_QNAME = new QName("http://service.biblio.lle.org/", "addRecall");
     private final static QName _DoResultLivre_QNAME = new QName("http://service.biblio.lle.org/", "DoResultLivre");
+    private final static QName _AddRecallResponse_QNAME = new QName("http://service.biblio.lle.org/", "addRecallResponse");
     private final static QName _GetLivreTitreResponse_QNAME = new QName("http://service.biblio.lle.org/", "getLivreTitreResponse");
     private final static QName _GetLivrelocation_QNAME = new QName("http://service.biblio.lle.org/", "getLivrelocation");
     private final static QName _GetListReservationResponse_QNAME = new QName("http://service.biblio.lle.org/", "getListReservationResponse");
@@ -43,17 +45,21 @@ public class ObjectFactory {
     private final static QName _GetUser_QNAME = new QName("http://service.biblio.lle.org/", "getUser");
     private final static QName _GetExpiredate_QNAME = new QName("http://service.biblio.lle.org/", "getExpiredate");
     private final static QName _AddBookedResponse_QNAME = new QName("http://service.biblio.lle.org/", "addBookedResponse");
+    private final static QName _GetRecall_QNAME = new QName("http://service.biblio.lle.org/", "getRecall");
     private final static QName _UserPosition_QNAME = new QName("http://service.biblio.lle.org/", "userPosition");
     private final static QName _ListBookingResponse_QNAME = new QName("http://service.biblio.lle.org/", "listBookingResponse");
     private final static QName _DelLoc_QNAME = new QName("http://service.biblio.lle.org/", "delLoc");
     private final static QName _GetUtilisateurResponse_QNAME = new QName("http://service.biblio.lle.org/", "getUtilisateurResponse");
     private final static QName _AddNotifResponse_QNAME = new QName("http://service.biblio.lle.org/", "addNotifResponse");
     private final static QName _ListBooking_QNAME = new QName("http://service.biblio.lle.org/", "listBooking");
+    private final static QName _DelRecall_QNAME = new QName("http://service.biblio.lle.org/", "delRecall");
     private final static QName _GetLivrelocationResponse_QNAME = new QName("http://service.biblio.lle.org/", "getLivrelocationResponse");
     private final static QName _GetUtilisateur_QNAME = new QName("http://service.biblio.lle.org/", "getUtilisateur");
     private final static QName _DoListLivre_QNAME = new QName("http://service.biblio.lle.org/", "DoListLivre");
+    private final static QName _DelRecallResponse_QNAME = new QName("http://service.biblio.lle.org/", "delRecallResponse");
     private final static QName _DoLoginResponse_QNAME = new QName("http://service.biblio.lle.org/", "DoLoginResponse");
     private final static QName _GetListLocationResponse_QNAME = new QName("http://service.biblio.lle.org/", "getListLocationResponse");
+    private final static QName _GetRecallResponse_QNAME = new QName("http://service.biblio.lle.org/", "getRecallResponse");
     private final static QName _AddProloResponse_QNAME = new QName("http://service.biblio.lle.org/", "addProloResponse");
     private final static QName _GetAuteur_QNAME = new QName("http://service.biblio.lle.org/", "getAuteur");
     private final static QName _GetExemplaireResponse_QNAME = new QName("http://service.biblio.lle.org/", "getExemplaireResponse");
@@ -244,6 +250,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DelRecall }
+     * 
+     */
+    public DelRecall createDelRecall() {
+        return new DelRecall();
+    }
+
+    /**
      * Create an instance of {@link DoLoginResponse }
      * 
      */
@@ -260,6 +274,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DelRecallResponse }
+     * 
+     */
+    public DelRecallResponse createDelRecallResponse() {
+        return new DelRecallResponse();
+    }
+
+    /**
      * Create an instance of {@link ListBooking }
      * 
      */
@@ -273,6 +295,14 @@ public class ObjectFactory {
      */
     public GetListLocation createGetListLocation() {
         return new GetListLocation();
+    }
+
+    /**
+     * Create an instance of {@link GetRecallResponse }
+     * 
+     */
+    public GetRecallResponse createGetRecallResponse() {
+        return new GetRecallResponse();
     }
 
     /**
@@ -428,11 +458,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetRecall }
+     * 
+     */
+    public GetRecall createGetRecall() {
+        return new GetRecall();
+    }
+
+    /**
      * Create an instance of {@link ListBookingResponse }
      * 
      */
     public ListBookingResponse createListBookingResponse() {
         return new ListBookingResponse();
+    }
+
+    /**
+     * Create an instance of {@link AddRecallResponse }
+     * 
+     */
+    public AddRecallResponse createAddRecallResponse() {
+        return new AddRecallResponse();
     }
 
     /**
@@ -449,6 +495,14 @@ public class ObjectFactory {
      */
     public DoResultLivre createDoResultLivre() {
         return new DoResultLivre();
+    }
+
+    /**
+     * Create an instance of {@link AddRecall }
+     * 
+     */
+    public AddRecall createAddRecall() {
+        return new AddRecall();
     }
 
     /**
@@ -541,12 +595,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddRecall }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "addRecall")
+    public JAXBElement<AddRecall> createAddRecall(AddRecall value) {
+        return new JAXBElement<AddRecall>(_AddRecall_QNAME, AddRecall.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DoResultLivre }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "DoResultLivre")
     public JAXBElement<DoResultLivre> createDoResultLivre(DoResultLivre value) {
         return new JAXBElement<DoResultLivre>(_DoResultLivre_QNAME, DoResultLivre.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddRecallResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "addRecallResponse")
+    public JAXBElement<AddRecallResponse> createAddRecallResponse(AddRecallResponse value) {
+        return new JAXBElement<AddRecallResponse>(_AddRecallResponse_QNAME, AddRecallResponse.class, null, value);
     }
 
     /**
@@ -703,6 +775,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetRecall }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "getRecall")
+    public JAXBElement<GetRecall> createGetRecall(GetRecall value) {
+        return new JAXBElement<GetRecall>(_GetRecall_QNAME, GetRecall.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link UserPosition }{@code >}}
      * 
      */
@@ -757,6 +838,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DelRecall }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "delRecall")
+    public JAXBElement<DelRecall> createDelRecall(DelRecall value) {
+        return new JAXBElement<DelRecall>(_DelRecall_QNAME, DelRecall.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetLivrelocationResponse }{@code >}}
      * 
      */
@@ -784,6 +874,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DelRecallResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "delRecallResponse")
+    public JAXBElement<DelRecallResponse> createDelRecallResponse(DelRecallResponse value) {
+        return new JAXBElement<DelRecallResponse>(_DelRecallResponse_QNAME, DelRecallResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DoLoginResponse }{@code >}}
      * 
      */
@@ -799,6 +898,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "getListLocationResponse")
     public JAXBElement<GetListLocationResponse> createGetListLocationResponse(GetListLocationResponse value) {
         return new JAXBElement<GetListLocationResponse>(_GetListLocationResponse_QNAME, GetListLocationResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetRecallResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.biblio.lle.org/", name = "getRecallResponse")
+    public JAXBElement<GetRecallResponse> createGetRecallResponse(GetRecallResponse value) {
+        return new JAXBElement<GetRecallResponse>(_GetRecallResponse_QNAME, GetRecallResponse.class, null, value);
     }
 
     /**
