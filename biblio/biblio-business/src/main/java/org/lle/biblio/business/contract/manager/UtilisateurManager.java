@@ -17,4 +17,5 @@ public interface UtilisateurManager {
     void delRecall (int id);
     void addRecall (int id);
     boolean getRecall(int id);
+    List<Utilisateur> listRecall();
 }

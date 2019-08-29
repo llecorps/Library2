@@ -333,5 +333,15 @@ public class BiblioService extends AbstractService{
         return vRecall;
     }
 
+    @WebMethod
+    public List<Utilisateur> listRecall() {
+
+        UtilisateurServiceImpl vUtilisateurService = vApplicationContext.getBean("UtilisateurServiceImpl", UtilisateurServiceImpl.class);
+
+        List<Utilisateur> vListUser = vUtilisateurService.listRecall();
+        return vListUser;
+    }
+
+
 
 }

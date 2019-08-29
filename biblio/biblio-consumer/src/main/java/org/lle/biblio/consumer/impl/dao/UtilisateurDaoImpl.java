@@ -5,12 +5,15 @@ import org.lle.biblio.consumer.impl.rowmapper.utilisateur.UtilisateurRM;
 import org.lle.biblio.model.bean.utilisateur.Utilisateur;
 import org.lle.biblio.model.exception.NotFoundException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.Types;
+import java.util.List;
 
 
 @Named
@@ -74,6 +77,20 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl implements UtilisateurDa
         boolean vRecall = vJdbcTemplate.queryForObject(vSQL, vParams, boolean.class);
 
         return vRecall;
+    }
+
+    @Override
+    public List<Utilisateur> listRecall() {
+
+        String vSQL = "SELECT * FROM utilisateur WHERE recall=TRUE";
+
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+
+        RowMapper<Utilisateur> vRowMapper = new UtilisateurRM();
+
+        List<Utilisateur> vListRecall = vJdbcTemplate.query(vSQL, vRowMapper);
+        return vListRecall;
+
     }
 
     @Override
