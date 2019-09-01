@@ -57,5 +57,25 @@ public class LocationManagerImplTest{
         pLocationManager.addNotif("2019-09-31", 1);
         verify(pLocationManager, times(1)).addNotif("2019-09-31", 1);
     }
+    @Test
+    public void delLoc(){
+
+        pLocationManager.delLoc(pLocation);
+        verify(pLocationManager, times(1)).delLoc(pLocation);
+
+
+    }
+    @Test
+    public void addProlo(){
+
+        pLocationManager.addProlo("2019-09-31", 1);
+        verify(pLocationManager, times(1)).addProlo("2019-09-31", 1);
+    }
+    @Test
+    public void getExpiredate(){
+
+        when(pLocationManager.getExpiredate(1)).thenReturn("2019-09-30");
+        Assert.assertEquals(pLocationManager.getExpiredate(1),"2019-09-30");
+    }
 
 }
