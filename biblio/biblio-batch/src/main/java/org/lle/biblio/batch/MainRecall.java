@@ -3,7 +3,7 @@ package org.lle.biblio.batch;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.lle.biblio.batch.traitement.CheckNotification;
+import org.lle.biblio.batch.traitement.CheckRecall;
 import org.lle.biblio.model.exception.TechnicalException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,10 +14,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  * @author lgu
  */
-public class Main {
+public class MainRecall {
 
     /** Logger pour la classe */
-    private static final Log LOGGER = LogFactory.getLog(Main.class);
+    private static final Log LOGGER = LogFactory.getLog(MainRecall.class);
 
 
     /**
@@ -37,12 +37,12 @@ public class Main {
 
             String vTraitementId = pArgs[0];
 
-            //if ("CheckLocation".equals(vTraitementId)) {
-            if ("CheckNotification".equals(vTraitementId)) {
+
+            if ("CheckRecall".equals(vTraitementId)) {
                 LOGGER.info("Execution du traitement Batch");
 
                 //CheckLocation vTraitement  = vApplicationContext.getBean("CheckLocation", CheckLocation.class);
-                CheckNotification vTraitement  = vApplicationContext.getBean("CheckNotification", CheckNotification.class);
+                CheckRecall vTraitement  = vApplicationContext.getBean("CheckRecall", CheckRecall.class);
 
 
                 vTraitement.run();

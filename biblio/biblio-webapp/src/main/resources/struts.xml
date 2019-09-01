@@ -192,6 +192,31 @@
 
         </action>
 
+        <action name="activation" class="org.lle.biblio.webapp.action.LoginAction" method="activation">
+
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="authenticatedStack" />
+
+            <result name="error">/jsp/error.jsp</result>
+            <result name="success" type="redirectAction">display</result>
+
+        </action>
+
+        <action name="desactivation" class="org.lle.biblio.webapp.action.LoginAction" method="desactivation">
+
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="authenticatedStack" />
+
+            <result name="error">/jsp/error.jsp</result>
+            <result name="success" type="redirectAction">display</result>
+
+        </action>
 
 
     </package>

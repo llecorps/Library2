@@ -1,7 +1,6 @@
 package org.lle.biblio.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-
 import org.apache.struts2.interceptor.SessionAware;
 import org.lle.biblio.model.bean.emprunt.Emprunt;
 import org.lle.biblio.webapp.generated.*;
@@ -24,11 +23,29 @@ public class DisplayAction extends ActionSupport implements SessionAware {
     private List<Emprunt> listEmprunt;
     private Utilisateur utilisateur;
     private String prolongation;
+    private String activation;
+    private boolean recall;
     private List<Booking> listBooking;
     private List<Emprunt> listResa;
     private int vPosition;
     private String dateRetour;
     private Location location;
+
+    public boolean isRecall() {
+        return recall;
+    }
+
+    public void setRecall(boolean recall) {
+        this.recall = recall;
+    }
+
+    public String getActivation() {
+        return activation;
+    }
+
+    public void setActivation(String activation) {
+        this.activation = activation;
+    }
 
     public Location getLocation() {
         return location;
@@ -158,6 +175,16 @@ public class DisplayAction extends ActionSupport implements SessionAware {
         BiblioService pBiblioService = pBiblio.getBiblioServicePort();
 
          utilisateur = (Utilisateur) this.session.get("utilisateur");
+
+        recall = pBiblioService.getRecall(utilisateur.getId());
+
+        if (recall){
+            activation = "true";
+            }else{
+            activation = "false";
+        }
+
+
 
         if(utilisateur !=null){
 

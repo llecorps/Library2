@@ -12,21 +12,23 @@ public class Utilisateur {
     private String password;
     private String adress;
     private String phone;
+    private boolean recall;
 
 
 
 
     // ==================== Constructeurs ====================
 
-    public Utilisateur(int id, String login, String email, String password, String adress, String phone) {
+
+    public Utilisateur(int id, String login, String email, String password, String adress, String phone, boolean recall) {
         this.id = id;
         this.login = login;
         this.email = email;
         this.password = password;
         this.adress = adress;
         this.phone = phone;
+        this.recall = recall;
     }
-
 
     public Utilisateur() {
     }
@@ -80,8 +82,16 @@ public class Utilisateur {
         this.phone = phone;
     }
 
+    public boolean getRecall() {
+        return recall;
+    }
+
+    public void setRecall(boolean recall) {
+        this.recall = recall;
+    }
 
     // ==================== Méthodes ====================
+
 
     @Override
     public String toString() {
@@ -92,6 +102,7 @@ public class Utilisateur {
                 ", password='" + password + '\'' +
                 ", adress='" + adress + '\'' +
                 ", phone='" + phone + '\'' +
+                ", recall='" + recall + '\'' +
                 '}';
     }
 }

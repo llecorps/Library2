@@ -309,5 +309,39 @@ public class BiblioService extends AbstractService{
         vLocationService.addNotif(date , id);
 
     }
+    @WebMethod
+    public void delRecall(int id) {
+
+        UtilisateurServiceImpl vUtilisateurService = vApplicationContext.getBean("UtilisateurServiceImpl", UtilisateurServiceImpl.class);
+
+        vUtilisateurService.delRecall(id);
+        }
+
+    @WebMethod
+    public void addRecall(int id) {
+
+        UtilisateurServiceImpl vUtilisateurService = vApplicationContext.getBean("UtilisateurServiceImpl", UtilisateurServiceImpl.class);
+
+        vUtilisateurService.addRecall(id);
+    }
+    @WebMethod
+    public boolean getRecall(int id) {
+
+        UtilisateurServiceImpl vUtilisateurService = vApplicationContext.getBean("UtilisateurServiceImpl", UtilisateurServiceImpl.class);
+
+        boolean vRecall = vUtilisateurService.getRecall(id);
+        return vRecall;
+    }
+
+    @WebMethod
+    public List<Utilisateur> listRecall() {
+
+        UtilisateurServiceImpl vUtilisateurService = vApplicationContext.getBean("UtilisateurServiceImpl", UtilisateurServiceImpl.class);
+
+        List<Utilisateur> vListUser = vUtilisateurService.listRecall();
+        return vListUser;
+    }
+
+
 
 }

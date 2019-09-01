@@ -14,4 +14,8 @@ public interface UtilisateurManager {
 
     Utilisateur getUtilisateur(String Login, String Password);
     Utilisateur getUtilisateur(int id);
+    void delRecall (int id);
+    void addRecall (int id);
+    boolean getRecall(int id);
+    List<Utilisateur> listRecall();
 }
