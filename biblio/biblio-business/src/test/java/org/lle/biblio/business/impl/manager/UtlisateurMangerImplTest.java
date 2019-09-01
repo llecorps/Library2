@@ -34,8 +34,8 @@ public class UtlisateurMangerImplTest {
     @Test
     public void getUtilisateur() {
 
-        Mockito.when(pUtilisateur.getLogin()).thenReturn("user1");
-        Mockito.when(pUtilisateur.getLogin()).thenReturn("passwd");
+        Mockito.lenient().when(pUtilisateur.getLogin()).thenReturn("user1");
+        Mockito.lenient().when(pUtilisateur.getLogin()).thenReturn("passwd");
 
         Assert.assertNotNull(pUtilisateur);
 
