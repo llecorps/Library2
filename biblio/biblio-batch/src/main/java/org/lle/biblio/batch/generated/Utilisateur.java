@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="login" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="phone" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="recall" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,7 +38,8 @@ import javax.xml.bind.annotation.XmlType;
     "id",
     "login",
     "password",
-    "phone"
+    "phone",
+    "recall"
 })
 public class Utilisateur {
 
@@ -47,6 +49,7 @@ public class Utilisateur {
     protected String login;
     protected String password;
     protected String phone;
+    protected boolean recall;
 
     /**
      * Gets the value of the adress property.
@@ -182,6 +185,22 @@ public class Utilisateur {
      */
     public void setPhone(String value) {
         this.phone = value;
+    }
+
+    /**
+     * Gets the value of the recall property.
+     * 
+     */
+    public boolean isRecall() {
+        return recall;
+    }
+
+    /**
+     * Sets the value of the recall property.
+     * 
+     */
+    public void setRecall(boolean value) {
+        this.recall = value;
     }
 
 }

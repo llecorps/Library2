@@ -43,4 +43,31 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
         return vUtilisateur;
 
     }
+
+    @Override
+    public void delRecall(int id) {
+
+       getDaoFactory().getUtilisateurDao().delRecall(id);
+    }
+
+    @Override
+    public void addRecall(int id) {
+
+        getDaoFactory().getUtilisateurDao().addRecall(id);
+    }
+
+    @Override
+    public boolean getRecall(int id) {
+
+        boolean vRecall = getDaoFactory().getUtilisateurDao().getRecall(id);
+        return vRecall;
+    }
+
+    @Override
+    public List<Utilisateur> listRecall() {
+
+        List<Utilisateur> vListUser = getDaoFactory().getUtilisateurDao().listRecall();
+        return vListUser;
+    }
+
 }
