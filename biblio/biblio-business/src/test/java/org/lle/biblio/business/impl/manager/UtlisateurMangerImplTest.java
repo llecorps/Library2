@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.lle.biblio.model.bean.location.Location;
+import org.lle.biblio.model.bean.utilisateur.Utilisateur;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -12,15 +12,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Created by TheAdmin on 17.07.2019.
+ * Created by TheAdmin on 01.09.2019.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class LocationManagerImplTest{
-//public class LocationManagerImplTest extends AbstractManager {
+public class UtlisateurMangerImplTest {
 
-    //private LocationManagerImpl manager;
+    //private UtilisateurManagerImpl manager;
     @Mock
-    private Location pLocation;
+    private Utilisateur pUtilisateur;
 
     @Before
     public void setUp() throws Exception {
@@ -28,17 +27,18 @@ public class LocationManagerImplTest{
         ApplicationContext vApplicationContext
                 = new ClassPathXmlApplicationContext("classpath:/bootstrapContext.xml");
 
-        //manager = vApplicationContext.getBean("locationManagerImpl", LocationManagerImpl.class);
+        //manager = vApplicationContext.getBean("UtilisateurManagerImpl", UtilisateurManagerImpl.class);
 
     }
 
     @Test
-    public void getLocation() throws Exception {
+    public void getUtilisateur() {
 
-       // pLocation = manager.getLocation(2);
-        Mockito.lenient().when(pLocation.getUtilisateur_id()).thenReturn(Integer.valueOf("2"));
-       // Assert.assertTrue(pLocation != null);
-        Assert.assertNotNull(pLocation);
+        Mockito.when(pUtilisateur.getLogin()).thenReturn("user1");
+        Mockito.when(pUtilisateur.getLogin()).thenReturn("passwd");
+
+        Assert.assertNotNull(pUtilisateur);
+
     }
 
 }
