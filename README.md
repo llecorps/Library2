@@ -72,5 +72,11 @@ version. Otherwise, run the application by right clicking on the `PetClinicAppli
 
 Visit [http://localhost:8080](http://localhost:8080) in your browser.
 
+## Looking for something in particular?
 
+|Spring Boot Configuration | Class or Java property files  |
+|--------------------------|---|
+|The Main Class | [PetClinicApplication](https://github.com/spring-projects/spring-petclinic/blob/master/src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java) |
+|Properties Files | [application.properties](https://github.com/spring-projects/spring-petclinic/blob/master/src/main/resources) |
+|Caching | [CacheConfiguration](https://github.com/spring-projects/spring-petclinic/blob/master/src/main/java/org/springframework/samples/petclinic/system/CacheConfiguration.java) |
 
