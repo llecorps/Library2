@@ -1,55 +1,109 @@
-## Mettez en oeuvre la SOA pour le nouveau système d’information de la bibliothèque d’une grande ville
-
-### Contexte
-
-Le service culturel d’une grande ville souhaite moderniser la gestion de ses bibliothèques. Pour cela, elle désire mettre à disposition de ses usagers, un système de suivi des prêts de leurs ouvrages.
-
-Ce système comprendra :
-
-un site web (en responsive design) accessible aux usagers et permettant :
-de rechercher des ouvrages et voir le nombre d’exemplaires disponibles.
-de suivre leurs prêts en cours. Les prêts sont pour une période de 4 semaines.
-de prolonger un prêt. Le prêt d’un ouvrage n’est prolongeable qu’une seule fois. La prolongation ajoute une nouvelle période de prêt (4 semaines) à la période initiale.
-une application mobile iOS et Android fournissant les mêmes services que le site web.
-une application spécifique pour le personnel des bibliothèque permettant, entre autres, de gérer les emprunts et le livres rendus.
-un batch lancé régulièrement et qui enverra des mails de relance aux usagers n’ayant pas rendu les livres en fin de période de prêt.
-À vous de réaliser ce système !
+# Biblio Java Library Application [![Build Status](https://travis-ci.com/llecorps/Library2.svg?branch=master)](https://travis-ci.com/llecorps/Library2)
+Deploy this sample application to Pivotal Web Services:
 
 
-### Contenu
+## Prerequisites
+The following needs to be installed before starting.
+* [Git](https://git-scm.com/downloads)
+* [GlassFish](https://javaee.github.io/glassfish/)
+* [Tomcat](http://tomcat.apache.org/)
+* [SoapUi](https://www.soapui.org/)
 
--   `biblio` : les sources du projet de bibliothèque
 
-### Installation
+## Understanding the Biblio application with a few diagrams
+[See the presentation here](https://github.com/llecorps/Library2/blob/master/doc/SOA%20BIBLIO.pptx)
 
-- `Unzip`le package biblio-delivery.zip.
-- Déployer biblio-service.war sur le serveur Glassfih via l'interface Administrateur.
-- Déployer biblio-webapp.war sur le serveur Tomcat.
-- Sur linux :
-  -> déployer biblio-batch-1.0-SNAPSHOT-archive-deploy.tar.gz.
-  -> Livrer les fichiers de configuration : config.properties, db-biblio.properties.
-  -> Lancer le script batch-export-emprunt-statut.sh
+## Bug/suggested improvement for Spring Vivlio
+Our issue tracker is available here: https://github.com/llecorps/Library2/projects/1
 
-### Crontab
 
-- crontab -e pour éditer la crontab.
-- exemple pour un batch journalier lancé à 02:00 AM:
-# Minute   Hour   Day of Month       Month          Day of Week        Command    
-# (0-59)  (0-23)     (1-31)    (1-12 or Jan-Dec)  (0-6 or Sun-Sat)                
-    0        2          *             *                *            batch-export-emprunt-statut.sh
+## Database configuration
 
-### pgcrypto
+Use Docker container to build Biblio Database.
+Fill correct credentials in **docker-compose.yml** :
+```
+environment:
+  - POSTGRES_DB=DB_NAME
+  - POSTGRES_USER=USER_NAME
+  - POSTGRES_PASSWORD=USER_PASSWORD
+```
+**Launch**
+```
+cd docker/dev
+docker-compose up
+```
+**Shutdown**
+```
+cd docker/dev
+docker-compose stop
+```
+**Init**
+```
+cd docker/dev
+docker-compose stop
+docker-compose rm -v
+docker-compose up
+```
 
-https://x-team.com/blog/storing-secure-passwords-with-postgresql/
 
-- CREATE EXTENSION pgcrypto;
+## Working with Biblio in your IDE
 
-- INSERT INTO users (email, password) VALUES (
-  'johndoe@mail.com',
-  crypt('johnspassword', gen_salt('bf'))
-);
+### Prerequisites
+The following items should be installed in your system:
+* Java 8 or newer.
+* Apache Maven 3.5.3
+* Bootstrap 4.0.0
+* Docker
+* GlassFish 5.0
+* PostgreSQL 10.3
+* Struts2 2.5.14.1
+* git command line tool (https://help.github.com/articles/set-up-git)
+* Your preferred IDE
+  * Eclipse with the m2e plugin. Note: when m2e is available, there is an m2 icon in `Help -> About` dialog. If m2e is
+  not there, just follow the install process here: https://www.eclipse.org/m2e/
+  * [Spring Tools Suite](https://spring.io/tools) (STS)
+  * IntelliJ IDEA
+  * [VS Code](https://code.visualstudio.com)
 
-SELECT id
-  FROM users
- WHERE email = 'johndoe@mail.com'
-   AND password = crypt('johnspassword', password);
+### Steps:
+
+1) On the command line
+```
+git clone https://github.com/llecorps/Library2
+```
+2) Inside IntelliJ IDEA
+```
+File -> Import -> Maven -> Existing Maven project
+```
+
+
+Then either build on the command line `./mvnw generate-resources`
+or right click on the `spring-petclinic` project then `Maven -> Generates sources and Update Folders`.
+
+3) Delivery
+```
+unzip biblio-batch-2.0-RELEASE-archive-deploy.tar.gz
+copy config.properties, db-biblio.properties
+deploy biblio-service.war on glassfish server
+deploy biblio-webapp.war on tomcat server
+```
+
+4) Navigate to BIBLIO
+
+Visit [http://localhost:8080](http://localhost:8080) in your browser.
+
+## Biblio Module
+
+|Functionnality | Repository  |
+|--------------------------|---|
+|Biblio-Batch | [pom.xml](https://github.com/llecorps/Library2/blob/master/biblio/biblio-batch/pom.xml) |
+|Biblio-Business | [pom.xml](https://github.com/llecorps/Library2/blob/master/biblio/biblio-business/pom.xml) |
+|Biblio-Consumer | [pom.xml](https://github.com/llecorps/Library2/blob/master/biblio/biblio-consumer/pom.xml) |
+|Biblio-Module | [pom.xml](https://github.com/llecorps/Library2/blob/master/biblio/biblio-model/pom.xml) |
+|Biblio-Service | [pom.xml](https://github.com/llecorps/Library2/blob/master/biblio/biblio-service/pom.xml) |
+|Biblio-Technical | [pom.xml](https://github.com/llecorps/Library2/blob/master/biblio/biblio-technical/pom.xml) |
+|Biblio-Webapp | [pom.xml](https://github.com/llecorps/Library2/blob/master/biblio/pom.xml) |
+
+## Travis configuration
+
+Gonfigurtaion file to Continuous Integration environment [.travis.yml](https://github.com/llecorps/Library2/blob/master/.travis.yml)
