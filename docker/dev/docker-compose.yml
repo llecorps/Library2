@@ -1,6 +1,6 @@
 version: '2'
 services:
-  myerp.db:
+  biblio.db:
     image: postgres:latest
     ports:
       - "127.0.0.1:9032:5432"
@@ -8,7 +8,6 @@ services:
 #      - "./data/db:/var/lib/postgresql/data"
        - "./init/db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
     environment:
-      - POSTGRES_DB=db_myerp
-      - POSTGRES_USER=usr_myerp
-      - POSTGRES_PASSWORD=myerp
-      
+      - POSTGRES_DB=biblo
+      - POSTGRES_USER=admbiblio
+      - POSTGRES_PASSWORD=Cartel01

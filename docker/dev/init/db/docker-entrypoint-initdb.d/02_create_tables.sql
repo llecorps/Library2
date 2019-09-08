@@ -1,75 +1,111 @@
+CREATE SEQUENCE public.Utilisateur_id_seq;
 
-CREATE TABLE MYERP.journal_comptable (
-                code VARCHAR(5) NOT NULL,
-                libelle VARCHAR(150) NOT NULL,
-                CONSTRAINT journal_comptable_pk PRIMARY KEY (code)
+CREATE TABLE public.Utilisateur (
+                id INTEGER NOT NULL DEFAULT nextval('public.Utilisateur_id_seq'),
+                login VARCHAR(20) NOT NULL,
+                email VARCHAR(60) NOT NULL,
+                password VARCHAR(20) NOT NULL,
+                adress VARCHAR(100) NOT NULL,
+                phone INTEGER,
+                CONSTRAINT Utilisateur_pk PRIMARY KEY (id)
 );
 
+ALTER SEQUENCE public.Utilisateur_id_seq OWNED BY public.Utilisateur.id;
 
-CREATE TABLE MYERP.sequence_ecriture_comptable (
-                journal_code VARCHAR(5) NOT NULL,
-                annee INTEGER NOT NULL,
-                derniere_valeur INTEGER NOT NULL,
-                CONSTRAINT sequence_ecriture_comptable_pk PRIMARY KEY (journal_code, annee)
+CREATE SEQUENCE public.Location_id_seq;
+
+CREATE TABLE public.Location (
+                id INTEGER NOT NULL DEFAULT nextval('public.Location_id_seq'),
+                utilisateur_id INTEGER NOT NULL,
+                livre_id INTEGER NOT NULL,
+                expiredate DATE NOT NULL,
+                prolongation BOOLEAN NOT NULL,
+                CONSTRAINT Location_pk PRIMARY KEY (id)
 );
 
+ALTER SEQUENCE public.Location_id_seq OWNED BY public.Location.id;
 
-CREATE SEQUENCE MYERP.ecriture_comptable_id_seq;
+CREATE SEQUENCE public.Livre_id_seq;
 
-CREATE TABLE MYERP.ecriture_comptable (
-                id INTEGER NOT NULL DEFAULT nextval('MYERP.ecriture_comptable_id_seq'),
-                journal_code VARCHAR(5) NOT NULL,
-                reference VARCHAR(30),
-                date TIMESTAMP NOT NULL,
-                libelle VARCHAR(200) NOT NULL,
-                CONSTRAINT ecriture_comptable_pk PRIMARY KEY (id)
+CREATE TABLE public.Livre (
+                id INTEGER NOT NULL DEFAULT nextval('public.Livre_id_seq'),
+                titre VARCHAR(45) NOT NULL,
+                auteur_id INTEGER NOT NULL,
+                genre VARCHAR(45) NOT NULL,
+                exemplaire INTEGER NOT NULL,
+                Description VARCHAR(200),
+                CONSTRAINT Livre_pk PRIMARY KEY (id)
 );
 
+ALTER SEQUENCE public.Livre_id_seq OWNED BY public.Livre.id;
 
-ALTER SEQUENCE MYERP.ecriture_comptable_id_seq OWNED BY MYERP.ecriture_comptable.id;
+CREATE SEQUENCE public.Auteur_id_seq;
 
-CREATE TABLE MYERP.compte_comptable (
-                numero INTEGER NOT NULL,
-                libelle VARCHAR(150) NOT NULL,
-                CONSTRAINT compte_comptable_pk PRIMARY KEY (numero)
+CREATE TABLE public.Auteur (
+                id INTEGER NOT NULL DEFAULT nextval('public.Auteur_id_seq'),
+                prenom VARCHAR(20) NOT NULL,
+                nom VARCHAR(20) NOT NULL,
+                genre VARCHAR(20) NOT NULL,
+                CONSTRAINT Autheur_pk PRIMARY KEY (id)
 );
 
-
-CREATE TABLE MYERP.ligne_ecriture_comptable (
-                ecriture_id INTEGER NOT NULL,
-                ligne_id INTEGER NOT NULL,
-                compte_comptable_numero INTEGER NOT NULL,
-                libelle VARCHAR(200),
-                debit NUMERIC(15,2),
-                credit NUMERIC(15,2),
-                CONSTRAINT ligne_ecriture_comptable_pk PRIMARY KEY (ecriture_id, ligne_id)
-);
+ALTER SEQUENCE public.Auteur_id_seq OWNED BY public.Auteur.id;
 
 
-ALTER TABLE MYERP.sequence_ecriture_comptable ADD CONSTRAINT journal_comptable_sequence_ecriture_comptable_fk
-FOREIGN KEY (journal_code)
-REFERENCES MYERP.journal_comptable (code)
+ALTER TABLE public.Location ADD CONSTRAINT fk_utilisateur_id
+FOREIGN KEY (utilisateur_id)
+REFERENCES public.Utilisateur (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE MYERP.ecriture_comptable ADD CONSTRAINT journal_comptable_ecriture_comptable_fk
-FOREIGN KEY (journal_code)
-REFERENCES MYERP.journal_comptable (code)
+ALTER TABLE public.Location ADD CONSTRAINT fk_livre_id
+FOREIGN KEY (livre_id)
+REFERENCES public.Livre (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE MYERP.ligne_ecriture_comptable ADD CONSTRAINT ecriture_comptable_ligne_ecriture_comptable_fk
-FOREIGN KEY (ecriture_id)
-REFERENCES MYERP.ecriture_comptable (id)
+
+ALTER TABLE public.Livre ADD CONSTRAINT fk_auteur_id
+FOREIGN KEY (auteur_id)
+REFERENCES public.Auteur (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE MYERP.ligne_ecriture_comptable ADD CONSTRAINT compte_comptable_ligne_ecriture_comptable_fk
-FOREIGN KEY (compte_comptable_numero)
-REFERENCES MYERP.compte_comptable (numero)
+ALTER TABLE public.Livre ADD CONSTRAINT fk_genre_id
+FOREIGN KEY (auteur_genre)
+REFERENCES public.Auteur (genre)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+CREATE SEQUENCE public.booking_id_seq;
+
+CREATE TABLE public.booking (
+                id INTEGER NOT NULL DEFAULT nextval('public.booking_id_seq'),
+                user_id INTEGER NOT NULL,
+                livre_id INTEGER NOT NULL,
+                bookingdate DATE NOT NULL,
+                position INTEGER NOT NULL,
+                notification DATE,
+                CONSTRAINT booking_pk PRIMARY KEY (id)
+);
+
+ALTER SEQUENCE public.booking_id_seq OWNED BY public.booking.id;
+
+
+ALTER TABLE public.booking ADD CONSTRAINT fk_user_id
+FOREIGN KEY (user_id)
+REFERENCES public.Utilisateur (id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.booking ADD CONSTRAINT fk_livre_id
+FOREIGN KEY (livre_id)
+REFERENCES public.Livre (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;

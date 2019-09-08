@@ -89,6 +89,7 @@ public class CheckNotification extends AbstractTraitement {
                     Livre vLivre = pBiblioService.getLivre(book.getLivreId());
                     String mail = vUtilisateur.getEmail();
 
+
                     //Envoi Mail
 
                     String to = mail;

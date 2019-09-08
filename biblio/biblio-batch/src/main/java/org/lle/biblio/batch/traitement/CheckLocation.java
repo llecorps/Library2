@@ -96,13 +96,13 @@ public class CheckLocation extends AbstractTraitement{
                     message.setSubject(subject);
                     message.setContent(msg, "text/plain");
                     message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-                    transport.connect();
-                    Transport.send(message);
-                    transport.close();
+                   // transport.connect();
+                   // Transport.send(message);
+                   // transport.close();
                 } catch (MessagingException e) {
                     e.printStackTrace();
                 }
-
+                System.out.println("===> Mail envoyé!");
             }else {
                 System.out.println("Date Location est valide:" + dateLocation);
 
