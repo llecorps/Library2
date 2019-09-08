@@ -22,6 +22,14 @@ public class LivreServiceImpl extends AbstractService {
 
     }
 
+    public Livre getLivreTitre(String chaine){
+
+        Livre vLivre = getManagerFactory().getLivreManager().getLivreTitre(chaine);
+
+        return vLivre;
+
+    }
+
     public List<Livre> getListLivre() throws NotFoundException {
 
        List<Livre> vListLivre = new ArrayList();

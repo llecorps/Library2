@@ -1,9 +1,9 @@
 package org.lle.biblio.consumer.contract;
 
-        import org.lle.biblio.consumer.contract.dao.AuteurDao;
-        import org.lle.biblio.consumer.contract.dao.LivreDao;
-        import org.lle.biblio.consumer.contract.dao.LocationDao;
-        import org.lle.biblio.consumer.contract.dao.UtilisateurDao;
+import org.lle.biblio.consumer.contract.dao.AuteurDao;
+import org.lle.biblio.consumer.contract.dao.LivreDao;
+import org.lle.biblio.consumer.contract.dao.LocationDao;
+import org.lle.biblio.consumer.contract.dao.UtilisateurDao;
 
 
 public interface DaoFactory {

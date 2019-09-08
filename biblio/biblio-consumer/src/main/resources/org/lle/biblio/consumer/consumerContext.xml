@@ -5,8 +5,4 @@
             http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
-    <bean id="AuteurDaoImpl" class="org.lle.biblio.consumer.impl.dao.AuteurDaoImpl"/>
-
-
 </beans>

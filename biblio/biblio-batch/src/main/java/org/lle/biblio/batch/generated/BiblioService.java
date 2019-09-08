@@ -43,21 +43,33 @@ public interface BiblioService {
 
     /**
      * 
-     * @param arg1
+     * @param arg0
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getPosition", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetPosition")
+    @ResponseWrapper(localName = "getPositionResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetPositionResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getPositionRequest", output = "http://service.biblio.lle.org/BiblioService/getPositionResponse")
+    public int getPosition(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns org.lle.biblio.batch.generated.Utilisateur
      */
-    @WebMethod(operationName = "DoLogin")
+    @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "DoLogin", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DoLogin")
-    @ResponseWrapper(localName = "DoLoginResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DoLoginResponse")
-    @Action(input = "http://service.biblio.lle.org/BiblioService/DoLoginRequest", output = "http://service.biblio.lle.org/BiblioService/DoLoginResponse")
-    public Utilisateur doLogin(
+    @RequestWrapper(localName = "getUser", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetUser")
+    @ResponseWrapper(localName = "getUserResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetUserResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getUserRequest", output = "http://service.biblio.lle.org/BiblioService/getUserResponse")
+    public Utilisateur getUser(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
+        int arg0);
 
     /**
      * 
@@ -78,6 +90,21 @@ public interface BiblioService {
      * 
      * @param arg0
      * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getNbreLocation", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetNbreLocation")
+    @ResponseWrapper(localName = "getNbreLocationResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetNbreLocationResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getNbreLocationRequest", output = "http://service.biblio.lle.org/BiblioService/getNbreLocationResponse")
+    public int getNbreLocation(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
      *     returns java.util.List<org.lle.biblio.batch.generated.Location>
      */
     @WebMethod
@@ -91,18 +118,82 @@ public interface BiblioService {
 
     /**
      * 
+     * @param arg1
      * @param arg0
      * @return
-     *     returns int
+     *     returns org.lle.biblio.batch.generated.Utilisateur
+     */
+    @WebMethod(operationName = "DoLogin")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "DoLogin", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DoLogin")
+    @ResponseWrapper(localName = "DoLoginResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DoLoginResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/DoLoginRequest", output = "http://service.biblio.lle.org/BiblioService/DoLoginResponse")
+    public Utilisateur doLogin(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<org.lle.biblio.batch.generated.Livre>
+     * @throws NotFoundException_Exception
+     */
+    @WebMethod(operationName = "DoListLivre")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "DoListLivre", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DoListLivre")
+    @ResponseWrapper(localName = "DoListLivreResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DoListLivreResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/DoListLivreRequest", output = "http://service.biblio.lle.org/BiblioService/DoListLivreResponse", fault = {
+        @FaultAction(className = NotFoundException_Exception.class, value = "http://service.biblio.lle.org/BiblioService/DoListLivre/Fault/NotFoundException")
+    })
+    public List<Livre> doListLivre()
+        throws NotFoundException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<org.lle.biblio.batch.generated.Booking>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getExemplaire", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetExemplaire")
-    @ResponseWrapper(localName = "getExemplaireResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetExemplaireResponse")
-    @Action(input = "http://service.biblio.lle.org/BiblioService/getExemplaireRequest", output = "http://service.biblio.lle.org/BiblioService/getExemplaireResponse")
-    public int getExemplaire(
+    @RequestWrapper(localName = "listBooking", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.ListBooking")
+    @ResponseWrapper(localName = "listBookingResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.ListBookingResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/listBookingRequest", output = "http://service.biblio.lle.org/BiblioService/listBookingResponse")
+    public List<Booking> listBooking();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<org.lle.biblio.batch.generated.Livre>
+     * @throws NotFoundException_Exception
+     */
+    @WebMethod(operationName = "DoResultLivre")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "DoResultLivre", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DoResultLivre")
+    @ResponseWrapper(localName = "DoResultLivreResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DoResultLivreResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/DoResultLivreRequest", output = "http://service.biblio.lle.org/BiblioService/DoResultLivreResponse", fault = {
+        @FaultAction(className = NotFoundException_Exception.class, value = "http://service.biblio.lle.org/BiblioService/DoResultLivre/Fault/NotFoundException")
+    })
+    public List<Livre> doResultLivre(
         @WebParam(name = "arg0", targetNamespace = "")
-        int arg0);
+        String arg0)
+        throws NotFoundException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<org.lle.biblio.batch.generated.Utilisateur>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listRecall", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.ListRecall")
+    @ResponseWrapper(localName = "listRecallResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.ListRecallResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/listRecallRequest", output = "http://service.biblio.lle.org/BiblioService/listRecallResponse")
+    public List<Utilisateur> listRecall();
 
     /**
      * 
@@ -121,15 +212,116 @@ public interface BiblioService {
 
     /**
      * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "addBooked", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.AddBooked")
+    @ResponseWrapper(localName = "addBookedResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.AddBookedResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/addBookedRequest", output = "http://service.biblio.lle.org/BiblioService/addBookedResponse")
+    public void addBooked(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Booking arg0);
+
+    /**
+     * 
+     * @param arg0
      * @return
-     *     returns java.util.List<org.lle.biblio.batch.generated.Location>
+     *     returns org.lle.biblio.batch.generated.Livre
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listLocation", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.ListLocation")
-    @ResponseWrapper(localName = "listLocationResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.ListLocationResponse")
-    @Action(input = "http://service.biblio.lle.org/BiblioService/listLocationRequest", output = "http://service.biblio.lle.org/BiblioService/listLocationResponse")
-    public List<Location> listLocation();
+    @RequestWrapper(localName = "getLivreTitre", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetLivreTitre")
+    @ResponseWrapper(localName = "getLivreTitreResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetLivreTitreResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getLivreTitreRequest", output = "http://service.biblio.lle.org/BiblioService/getLivreTitreResponse")
+    public Livre getLivreTitre(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "delLoc", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DelLoc")
+    @ResponseWrapper(localName = "delLocResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DelLocResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/delLocRequest", output = "http://service.biblio.lle.org/BiblioService/delLocResponse")
+    public void delLoc(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Location arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getExemplaire", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetExemplaire")
+    @ResponseWrapper(localName = "getExemplaireResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetExemplaireResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getExemplaireRequest", output = "http://service.biblio.lle.org/BiblioService/getExemplaireResponse")
+    public int getExemplaire(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "addNotif", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.AddNotif")
+    @ResponseWrapper(localName = "addNotifResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.AddNotifResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/addNotifRequest", output = "http://service.biblio.lle.org/BiblioService/addNotifResponse")
+    public void addNotif(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns org.lle.biblio.batch.generated.Booking
+     * @throws NotFoundException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "userPosition", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.UserPosition")
+    @ResponseWrapper(localName = "userPositionResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.UserPositionResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/userPositionRequest", output = "http://service.biblio.lle.org/BiblioService/userPositionResponse", fault = {
+        @FaultAction(className = NotFoundException_Exception.class, value = "http://service.biblio.lle.org/BiblioService/userPosition/Fault/NotFoundException")
+    })
+    public Booking userPosition(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0)
+        throws NotFoundException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "addRecall", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.AddRecall")
+    @ResponseWrapper(localName = "addRecallResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.AddRecallResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/addRecallRequest", output = "http://service.biblio.lle.org/BiblioService/addRecallResponse")
+    public void addRecall(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "delRecall", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DelRecall")
+    @ResponseWrapper(localName = "delRecallResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DelRecallResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/delRecallRequest", output = "http://service.biblio.lle.org/BiblioService/delRecallResponse")
+    public void delRecall(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
 
     /**
      * 
@@ -160,38 +352,27 @@ public interface BiblioService {
 
     /**
      * 
-     * @param arg0
      * @return
-     *     returns org.lle.biblio.batch.generated.Utilisateur
+     *     returns java.util.List<org.lle.biblio.batch.generated.Location>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getUtilisateur", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetUtilisateur")
-    @ResponseWrapper(localName = "getUtilisateurResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetUtilisateurResponse")
-    @Action(input = "http://service.biblio.lle.org/BiblioService/getUtilisateurRequest", output = "http://service.biblio.lle.org/BiblioService/getUtilisateurResponse")
-    public Utilisateur getUtilisateur(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0);
+    @RequestWrapper(localName = "listLocation", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.ListLocation")
+    @ResponseWrapper(localName = "listLocationResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.ListLocationResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/listLocationRequest", output = "http://service.biblio.lle.org/BiblioService/listLocationResponse")
+    public List<Location> listLocation();
 
     /**
      * 
      * @param arg0
-     * @return
-     *     returns java.util.List<org.lle.biblio.batch.generated.Livre>
-     * @throws NotFoundException_Exception
      */
-    @WebMethod(operationName = "DoResultLivre")
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "DoResultLivre", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DoResultLivre")
-    @ResponseWrapper(localName = "DoResultLivreResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DoResultLivreResponse")
-    @Action(input = "http://service.biblio.lle.org/BiblioService/DoResultLivreRequest", output = "http://service.biblio.lle.org/BiblioService/DoResultLivreResponse", fault = {
-        @FaultAction(className = NotFoundException_Exception.class, value = "http://service.biblio.lle.org/BiblioService/DoResultLivre/Fault/NotFoundException")
-    })
-    public List<Livre> doResultLivre(
+    @WebMethod
+    @RequestWrapper(localName = "delBooked", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DelBooked")
+    @ResponseWrapper(localName = "delBookedResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DelBookedResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/delBookedRequest", output = "http://service.biblio.lle.org/BiblioService/delBookedResponse")
+    public void delBooked(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0)
-        throws NotFoundException_Exception
-    ;
+        int arg0);
 
     /**
      * 
@@ -210,19 +391,62 @@ public interface BiblioService {
 
     /**
      * 
+     * @param arg0
      * @return
-     *     returns java.util.List<org.lle.biblio.batch.generated.Livre>
-     * @throws NotFoundException_Exception
+     *     returns org.lle.biblio.batch.generated.Utilisateur
      */
-    @WebMethod(operationName = "DoListLivre")
+    @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "DoListLivre", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DoListLivre")
-    @ResponseWrapper(localName = "DoListLivreResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.DoListLivreResponse")
-    @Action(input = "http://service.biblio.lle.org/BiblioService/DoListLivreRequest", output = "http://service.biblio.lle.org/BiblioService/DoListLivreResponse", fault = {
-        @FaultAction(className = NotFoundException_Exception.class, value = "http://service.biblio.lle.org/BiblioService/DoListLivre/Fault/NotFoundException")
-    })
-    public List<Livre> doListLivre()
-        throws NotFoundException_Exception
-    ;
+    @RequestWrapper(localName = "getUtilisateur", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetUtilisateur")
+    @ResponseWrapper(localName = "getUtilisateurResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetUtilisateurResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getUtilisateurRequest", output = "http://service.biblio.lle.org/BiblioService/getUtilisateurResponse")
+    public Utilisateur getUtilisateur(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getRecall", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetRecall")
+    @ResponseWrapper(localName = "getRecallResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetRecallResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getRecallRequest", output = "http://service.biblio.lle.org/BiblioService/getRecallResponse")
+    public boolean getRecall(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getExpiredate", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetExpiredate")
+    @ResponseWrapper(localName = "getExpiredateResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetExpiredateResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getExpiredateRequest", output = "http://service.biblio.lle.org/BiblioService/getExpiredateResponse")
+    public String getExpiredate(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<org.lle.biblio.batch.generated.Booking>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getListReservation", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetListReservation")
+    @ResponseWrapper(localName = "getListReservationResponse", targetNamespace = "http://service.biblio.lle.org/", className = "org.lle.biblio.batch.generated.GetListReservationResponse")
+    @Action(input = "http://service.biblio.lle.org/BiblioService/getListReservationRequest", output = "http://service.biblio.lle.org/BiblioService/getListReservationResponse")
+    public List<Booking> getListReservation(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
 
 }

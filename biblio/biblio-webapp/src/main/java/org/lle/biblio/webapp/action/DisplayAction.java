@@ -1,7 +1,6 @@
 package org.lle.biblio.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-
 import org.apache.struts2.interceptor.SessionAware;
 import org.lle.biblio.model.bean.emprunt.Emprunt;
 import org.lle.biblio.webapp.generated.*;
@@ -24,18 +23,36 @@ public class DisplayAction extends ActionSupport implements SessionAware {
     private List<Emprunt> listEmprunt;
     private Utilisateur utilisateur;
     private String prolongation;
+    private String activation;
+    private boolean recall;
     private List<Booking> listBooking;
     private List<Emprunt> listResa;
     private int vPosition;
     private String dateRetour;
-    private Location vLocation;
+    private Location location;
 
-    public Location getvLocation() {
-        return vLocation;
+    public boolean isRecall() {
+        return recall;
     }
 
-    public void setvLocation(Location vLocation) {
-        this.vLocation = vLocation;
+    public void setRecall(boolean recall) {
+        this.recall = recall;
+    }
+
+    public String getActivation() {
+        return activation;
+    }
+
+    public void setActivation(String activation) {
+        this.activation = activation;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public String getDateRetour() {
@@ -159,6 +176,16 @@ public class DisplayAction extends ActionSupport implements SessionAware {
 
          utilisateur = (Utilisateur) this.session.get("utilisateur");
 
+        recall = pBiblioService.getRecall(utilisateur.getId());
+
+        if (recall){
+            activation = "true";
+            }else{
+            activation = "false";
+        }
+
+
+
         if(utilisateur !=null){
 
             listLocation = pBiblioService.getListLocation(utilisateur.getId());
@@ -198,8 +225,15 @@ public class DisplayAction extends ActionSupport implements SessionAware {
 
                 Resaid = book.getId();
                 vPosition=book.getPosition();
-                vLocation=pBiblioService.getLivrelocation(book.getLivreId());
-                dateRetour = vLocation.getExpiredate();
+                /*
+                location=pBiblioService.getLivrelocation(book.getLivreId());
+
+                if(location != null) {
+                    dateRetour = location.getExpiredate();
+                }else{
+                    dateRetour = "disponible";
+                }*/
+                dateRetour= book.getBookingdate();
                 livre = pBiblioService.getLivre(book.getLivreId());
                 auteur = pBiblioService.getAuteur(livre.getAuteurId());
 

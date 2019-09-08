@@ -11,6 +11,7 @@ import java.util.List;
 public interface LivreManager {
 
     Livre getLivre (int id);
+    Livre getLivreTitre (String chaine);
     List<Livre> getListLivre() throws NotFoundException;
     List<Livre> getResultLivre(String chaine) throws NotFoundException;
 }

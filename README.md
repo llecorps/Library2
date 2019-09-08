@@ -5,38 +5,60 @@ Deploy this sample application to Pivotal Web Services:
 ## Prerequisites
 The following needs to be installed before starting.
 * [Git](https://git-scm.com/downloads)
-* [Git-LFS](https://git-lfs.github.com/)
-* [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-* [Vagrant](https://www.vagrantup.com/downloads.html)
-* [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest)
+* [GlassFish](https://javaee.github.io/glassfish/)
+* [Tomcat](http://tomcat.apache.org/)
+* [SoapUi](https://www.soapui.org/)
 
 
 ## Understanding the Biblio application with a few diagrams
-<a href="https://speakerdeck.com/">See the presentation here</a>
+[See the presentation here](https://github.com/llecorps/Library2/blob/master/doc/SOA%20BIBLIO.pptx)
 
-## In case you find a bug/suggested improvement for Spring Petclinic
-Our issue tracker is available here: https://github.com/spring-projects/spring-petclinic/issues
+## Bug/suggested improvement for Spring Vivlio
+Our issue tracker is available here: https://github.com/llecorps/Library2/projects/1
 
 
 ## Database configuration
 
-In its default configuration, Petclinic uses an in-memory database (HSQLDB) which
-gets populated at startup with data. A similar setup is provided for MySql in case a persistent database configuration is needed.
-Note that whenever the database type is changed, the app needs to be run with a different profile: `spring.profiles.active=mysql` for MySql.
-
-You could start MySql locally with whatever installer works for your OS, or with docker:
-
+Use Docker container to build Biblio Database.
+Fill correct credentials in **docker-compose.yml** :
 ```
-docker run -e MYSQL_ROOT_PASSWORD=petclinic -e MYSQL_DATABASE=petclinic -p 3306:3306 mysql:5.7.8
+environment:
+  - POSTGRES_DB=DB_NAME
+  - POSTGRES_USER=USER_NAME
+  - POSTGRES_PASSWORD=USER_PASSWORD
+```
+**Launch**
+```
+cd docker/dev
+docker-compose up
+```
+**Shutdown**
+```
+cd docker/dev
+docker-compose stop
+```
+**Init**
+```
+cd docker/dev
+docker-compose stop
+docker-compose rm -v
+docker-compose up
 ```
 
-## Working with Petclinic in your IDE
+
+## Working with Biblio in your IDE
 
 ### Prerequisites
 The following items should be installed in your system:
 * Java 8 or newer.
+* Apache Maven 3.5.3
+* Bootstrap 4.0.0
+* Docker
+* GlassFish 5.0
+* PostgreSQL 10.3
+* Struts2 2.5.14.1
 * git command line tool (https://help.github.com/articles/set-up-git)
-* Your preferred IDE 
+* Your preferred IDE
   * Eclipse with the m2e plugin. Note: when m2e is available, there is an m2 icon in `Help -> About` dialog. If m2e is
   not there, just follow the install process here: https://www.eclipse.org/m2e/
   * [Spring Tools Suite](https://spring.io/tools) (STS)
@@ -47,36 +69,41 @@ The following items should be installed in your system:
 
 1) On the command line
 ```
-git clone https://github.com/spring-projects/spring-petclinic.git
+git clone https://github.com/llecorps/Library2
 ```
-2) Inside Eclipse or STS
+2) Inside IntelliJ IDEA
 ```
 File -> Import -> Maven -> Existing Maven project
 ```
 
 
-Then either build on the command line `./mvnw generate-resources` or using the Eclipse launcher (right click on project and `Run As -> Maven install`) to generate the css. Run the application main method by right clicking on it and choosing `Run As -> Java Application`.
-
-3) Inside IntelliJ IDEA
-
-In the main menu, choose `File -> Open` and select the Petclinic [pom.xml](pom.xml). Click on the `Open` button.
-
-CSS files are generated from the Maven build. You can either build them on the command line `./mvnw generate-resources`
+Then either build on the command line `./mvnw generate-resources`
 or right click on the `spring-petclinic` project then `Maven -> Generates sources and Update Folders`.
 
-A run configuration named `PetClinicApplication` should have been created for you if you're using a recent Ultimate
-version. Otherwise, run the application by right clicking on the `PetClinicApplication` main class and choosing
-`Run 'PetClinicApplication'`.
+3) Delivery
+```
+unzip biblio-batch-2.0-RELEASE-archive-deploy.tar.gz
+copy config.properties, db-biblio.properties
+deploy biblio-service.war on glassfish server
+deploy biblio-webapp.war on tomcat server
+```
 
-4) Navigate to Petclinic
+4) Navigate to BIBLIO
 
 Visit [http://localhost:8080](http://localhost:8080) in your browser.
 
-## Looking for something in particular?
+## Biblio Module
 
-|Spring Boot Configuration | Class or Java property files  |
+|Functionnality | Repository  |
 |--------------------------|---|
-|The Main Class | [PetClinicApplication](https://github.com/spring-projects/spring-petclinic/blob/master/src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java) |
-|Properties Files | [application.properties](https://github.com/spring-projects/spring-petclinic/blob/master/src/main/resources) |
-|Caching | [CacheConfiguration](https://github.com/spring-projects/spring-petclinic/blob/master/src/main/java/org/springframework/samples/petclinic/system/CacheConfiguration.java) |
+|Biblio-Batch | [pom.xml](https://github.com/llecorps/Library2/blob/master/biblio/biblio-batch/pom.xml) |
+|Biblio-Business | [pom.xml](https://github.com/llecorps/Library2/blob/master/biblio/biblio-business/pom.xml) |
+|Biblio-Consumer | [pom.xml](https://github.com/llecorps/Library2/blob/master/biblio/biblio-consumer/pom.xml) |
+|Biblio-Module | [pom.xml](https://github.com/llecorps/Library2/blob/master/biblio/biblio-model/pom.xml) |
+|Biblio-Service | [pom.xml](https://github.com/llecorps/Library2/blob/master/biblio/biblio-service/pom.xml) |
+|Biblio-Technical | [pom.xml](https://github.com/llecorps/Library2/blob/master/biblio/biblio-technical/pom.xml) |
+|Biblio-Webapp | [pom.xml](https://github.com/llecorps/Library2/blob/master/biblio/pom.xml) |
 
+## Travis configuration
+
+Gonfigurtaion file to Continuous Integration environment [.travis.yml](https://github.com/llecorps/Library2/blob/master/.travis.yml)

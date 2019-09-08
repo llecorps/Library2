@@ -11,6 +11,7 @@ import java.util.List;
 public interface LivreDao {
 
     Livre getLivre (int id) throws NotFoundException;
+    Livre getLivreTitre (String chaine) throws NotFoundException;
     List<Livre> getListLivre() throws NotFoundException;
     List<Livre> getResultLivre(String chaine) throws NotFoundException;
 }

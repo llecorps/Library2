@@ -2,6 +2,7 @@ package org.lle.biblio.business.contract.manager;
 
 import org.lle.biblio.model.bean.livre.Booking;
 import org.lle.biblio.model.bean.location.Location;
+import org.lle.biblio.model.exception.NotFoundException;
 
 import java.util.List;
 
@@ -17,11 +18,15 @@ public interface LocationManager {
     List<Location> getListLocation(int id);
     List<Booking> getListReservation(int id);
     List<Location> listLocation();
+    List<Booking> listBooking();
     void addProlo(String expiration, int id);
     void addBooked(Booking pBooking);
     void delBooked(int id);
     int getNbreLocation (int id);
     int getPosition (int id);
     String getExpiredate (int id);
+    void delLoc(Location location);
+    Booking userPosition (int id) throws NotFoundException;
+    void addNotif(String date, int id);
 
 }

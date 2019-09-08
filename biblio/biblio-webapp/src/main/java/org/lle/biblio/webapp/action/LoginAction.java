@@ -41,6 +41,33 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
     private int vPosition;
     private String dateRetour;
     private Location vLocation;
+    private int id;
+    private String activation;
+    private boolean recall;
+
+    public boolean isRecall() {
+        return recall;
+    }
+
+    public void setRecall(boolean recall) {
+        this.recall = recall;
+    }
+
+    public String getActivation() {
+        return activation;
+    }
+
+    public void setActivation(String activation) {
+        this.activation = activation;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Location getvLocation() {
         return vLocation;
@@ -196,6 +223,14 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
 
                 utilisateur = pBiblioService.doLogin(login, password);
 
+                recall = pBiblioService.getRecall(utilisateur.getId());
+
+                if (recall){
+                    activation = "true";
+                }else{
+                    activation = "false";
+                }
+
                 if (utilisateur != null) {
                         // Ajout de l'utilisateur en session
                         this.session.put("utilisateur", utilisateur);
@@ -240,12 +275,17 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
 
                         vPosition=book.getPosition();
 
-                        vLocation=pBiblioService.getLivrelocation(book.getLivreId());
-                        dateRetour = vLocation.getExpiredate();
-
+                        //vLocation=pBiblioService.getLivrelocation(book.getLivreId());
+/*
+                        if(vLocation != null) {
+                            dateRetour = vLocation.getExpiredate();
+                        }else{
+                            dateRetour = "disponible";
+                        }
+*/
                         livre = pBiblioService.getLivre(book.getLivreId());
                         auteur = pBiblioService.getAuteur(livre.getAuteurId());
-
+                        dateRetour= book.getBookingdate();
                         vEmprunt.setTitre(livre.getTitre());
                         vEmprunt.setDescription(livre.getDescription());
                         vEmprunt.setGenre(livre.getGenre());
@@ -279,6 +319,41 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
             return ActionSupport.SUCCESS;
         }
 
+        public String desactivation(){
 
+            String vResult = ActionSupport.INPUT;
 
+            if(id >0){
+
+                BiblioService_Service pBiblio = new BiblioService_Service();
+
+                BiblioService pBiblioService = pBiblio.getBiblioServicePort();
+
+                pBiblioService.delRecall(id);
+
+                 vResult = ActionSupport.SUCCESS;
+
+            }
+
+            return  vResult;
+        }
+
+    public String activation(){
+
+        String vResult = ActionSupport.INPUT;
+
+        if(id >0){
+
+            BiblioService_Service pBiblio = new BiblioService_Service();
+
+            BiblioService pBiblioService = pBiblio.getBiblioServicePort();
+
+            pBiblioService.addRecall(id);
+
+            vResult = ActionSupport.SUCCESS;
+
+        }
+
+        return  vResult;
+    }
     }

@@ -31,6 +31,8 @@
 
 
     <bean id="CheckLocation" class="org.lle.biblio.batch.traitement.CheckLocation" />
+    <bean id="CheckNotification" class="org.lle.biblio.batch.traitement.CheckNotification" />
+    <bean id="CheckRecall" class="org.lle.biblio.batch.traitement.CheckRecall" />
 
 
 

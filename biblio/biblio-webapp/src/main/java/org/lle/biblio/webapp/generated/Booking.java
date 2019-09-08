@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="bookingdate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="livre_id" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="notification" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="position" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="user_id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
@@ -35,6 +36,7 @@ import javax.xml.bind.annotation.XmlType;
     "bookingdate",
     "id",
     "livreId",
+    "notification",
     "position",
     "userId"
 })
@@ -44,6 +46,7 @@ public class Booking {
     protected int id;
     @XmlElement(name = "livre_id")
     protected int livreId;
+    protected String notification;
     protected int position;
     @XmlElement(name = "user_id")
     protected int userId;
@@ -102,6 +105,30 @@ public class Booking {
      */
     public void setLivreId(int value) {
         this.livreId = value;
+    }
+
+    /**
+     * Gets the value of the notification property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNotification() {
+        return notification;
+    }
+
+    /**
+     * Sets the value of the notification property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNotification(String value) {
+        this.notification = value;
     }
 
     /**
