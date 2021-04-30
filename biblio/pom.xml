@@ -44,7 +44,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <jersey.version>2.26</jersey.version>
-        <spring.version>4.3.11.RELEASE</spring.version>
+        <spring.version>4.3.29.RELEASE</spring.version>
         <struts.version>2.5.14.1</struts.version>
     </properties>
 
